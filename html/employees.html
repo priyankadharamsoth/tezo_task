@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel ="stylesheet" href="/css/employees.css">
+    <link rel="stylesheet" href="/css/common_classes.css">
+    <title>Employees</title>
+</head>
+<body>
+    <main style="display: flex;justify-content: start;">
+        <aside id = "horizontal-nav" style="margin-right: 40px;">
+          <div>
+            <div id = "logo-container" class="flex-space-between" style="padding-top: 6px;">
+                <img src="/images/TezoLogo.png" alt="" srcset="" height="40px">
+                <img src="/images/handle.png" alt="" srcset="" height="36px" width="36px">
+            </div>
+            <div style="height: 30px;"></div>
+            <div>
+                <p class = "title">All</p>
+                <div class = "icon-text">
+                    <img src="/images/Horizontal nav/Dashboard.svg" alt="dashboard">
+                    <p>Dashboard</p>
+                </div>
+                <div class = "icon-text active">
+                    <img src="/images/Horizontal nav/Employees.svg" alt="employees">
+                    <p>Employees</p>
+                </div>
+            </div>
+            <div class="space"></div>
+            <div>
+                <p class = "title">Role/User Management</p>
+                <div class="flex-space-between">
+                    <div class = "icon-text">
+                        <img src="/images/Horizontal nav/Roles.svg" alt="role">
+                        <p>Roles</p>
+                    </div>
+                    <img src="/images/arrow_right.svg" alt="">
+                </div>
+               <div class="flex-space-between">
+                    <div class = "icon-text">
+                        <img src="/images/Horizontal nav/assign user.svg" alt="employees">
+                        <p>Access Rights</p>
+                    </div>
+                    <img src="/images/arrow_right.svg" alt="">
+               </div>
+            </div>
+          </div>
+          <div id = "update-container">
+                <p class = "primary-text">Install new update</p>
+                <p class = "secondary-text">Allow to launch the new update for the AD application</p>
+                <div class = "row-btns">
+                    <button class="dismiss-btn">Dismiss</button>
+                    <button class="accept-btn">Accept</button>
+                </div>
+          </div>
+        </aside>
+        <section id="right-content">
+            <div id = "search-container" class="flex-space-between">
+                <div style="display: flex;justify-self: start;">
+                    <img src="/images/bx-search.png" alt="" style="padding-left: 10px;">
+                    <input type="search" name="searchword" id="search" placeholder="Search" > 
+                </div>
+                <div id = "trailing">
+                    <div style="padding-right: 20px;">
+                        <img src="/images/Vertical Navbar/Language.svg" alt="">
+                        <img src="/images/Vertical Navbar/Categories.svg" alt="" >
+                        <img src="/images/Vertical Navbar/Mode.svg" alt="" >
+                        <img src="/images/Vertical Navbar/Notifications.svg" alt="" >
+                    </div>
+                    <div style="display: flex;justify-content: space-between;align-items: center;">
+                        <img src="/images/profile.png" alt="" height="40px" style="border-radius: 50%;padding-right: 6px;">
+                        <div class="flex-column-start" style="padding-right: 8px;">
+                            <p class="f12">John Abraham</p>
+                            <p class="f12 bold">Admin</p>
+                        </div>
+                        <img src="/images/arrow_down.svg" alt="" height="18px" style="padding-right: 8px;">
+                   </div>
+                </div>
+            </div>
+            <div class="space"></div>
+            <section class="flex-space-between" style="align-items: center;">
+               <div>
+                    <p class = "filter-header">Employees</p>
+                    <p class= "filter-subtitle">Find all of your company's employee accounts and their associated roles.</p>
+               </div>
+               <div>
+                    <button class="inactive-btn btn">Export</button>
+                    <button class="active-btn btn">Add Employee</button>
+               </div>
+            </section>
+            <div class="space"></div>
+            <!--filter based on alphabates-->
+            <section id="filter" class="flex-space-between">
+                <img src="/images/filter.png" alt="" srcset="" style="padding-left: 6px;">
+                <div class="filter-item">A</div>
+                <div class="filter-item">B</div>
+                <div class="filter-item">C</div>
+                <div class="filter-item">D</div>
+                <div class="filter-item">E</div>
+                <div class="filter-item">F</div>
+                <div class="filter-item">G</div>
+                <div class="filter-item">H</div>
+                <div class="filter-item">I</div>
+                <div class="filter-item">J</div>
+                <div class="filter-item">K</div>
+                <div class="filter-item">L</div>
+                <div class="filter-item">M</div>
+                <div class="filter-item">N</div>
+                <div class="filter-item">O</div>
+                <div class="filter-item">P</div>
+                <div class="filter-item">Q</div>
+                <div class="filter-item">R</div>
+                <div class="filter-item">S</div>
+                <div class="filter-item">T</div>
+                <div class="filter-item">U</div>
+                <div class="filter-item">V</div>
+                <div class="filter-item">W</div>
+                <div class="filter-item">X</div>
+                <div class="filter-item">Y</div>
+                <div class="filter-item">Z</div>
+            </section> 
+            <div class="space"></div>
+            <!--Filter-->
+            <section id = "filter-category-container" class="flex-space-between">
+                <div class="flex-space-between">
+                    <p>Filter</p>
+                    <img src="/images/filter.png" alt="">
+                    <div id = "filter-categories" class="flex-space-between">
+                        <div class="flex-space-between">
+                            <button class="filter-category">Status<img src="/images/arrow_down.svg" alt="status" height="18px" class="pl-10"></button>
+                        </div>
+                        <div class="flex-space-between">
+                            <button class="filter-category">Location<img src="/images/arrow_down.svg" alt="location" height="18px" class="pl-10"></button>
+                        </div>
+                        <div class="flex-space-between">
+                            <button class="filter-category">Department<img src="/images/arrow_down.svg" alt="department" height="18px" class="pl-10"></button>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button class="dismiss-btn f12">Reset</button>
+                    <button class="accept-btn f12">Apply</button>
+                </div>
+            </section> 
+            <div class="space"></div>
+            <!--employees-->  
+            <section id = "employees-container">
+                <div class="flex-space-between">
+                    <div style="display: flex;justify-content: start;">
+                        <img src="/images/arrow-turn left -down.png" alt="" style="padding-right: 6px;height: 24px;width: 24px;">
+                        <button class="accept-btn">Delete</button>
+                    </div>
+                    <img src="/images/table-add.png" alt="">
+                </div>
+                <div class="space"></div>
+                <table class="employee-table">
+                    <tr>
+                      <th>User</th>
+                      <th>Location</th>
+                      <th>Department</th>
+                      <th>Role</th>
+                      <th>Employee No.</th>
+                      <th>Status</th>
+                      <th>Join Dt.</th>
+                    </tr>
+                    <tr>
+                      <td>Edger Jones</td>
+                      <td>Hyderabad</td>
+                      <td>Prod Engg</td>
+                      <td>Full-stack developer</td>
+                      <td>TZ001201</td>
+                      <td>Active</td>
+                      <td>12/03/2024</td>
+                    </tr>
+                    <tr>
+                        <td>Edger Jones</td>
+                        <td>Hyderabad</td>
+                        <td>Prod Engg</td>
+                        <td>Full-stack developer</td>
+                        <td>TZ001201</td>
+                        <td>Active</td>
+                        <td>12/03/2024</td>
+                      </tr>
+                      <tr>
+                        <td>Edger Jones</td>
+                        <td>Hyderabad</td>
+                        <td>Prod Engg</td>
+                        <td>Full-stack developer</td>
+                        <td>TZ001201</td>
+                        <td>Active</td>
+                        <td>12/03/2024</td>
+                      </tr>
+                      <tr>
+                        <td>Edger Jones</td>
+                        <td>Hyderabad</td>
+                        <td>Prod Engg</td>
+                        <td>Full-stack developer</td>
+                        <td>TZ001201</td>
+                        <td>Active</td>
+                        <td>12/03/2024</td>
+                      </tr>
+                      <tr>
+                        <td>Edger Jones</td>
+                        <td>Hyderabad</td>
+                        <td>Prod Engg</td>
+                        <td>Full-stack developer</td>
+                        <td>TZ001201</td>
+                        <td>Active</td>
+                        <td>12/03/2024</td>
+                      </tr>
+                      <tr>
+                        <td>Edger Jones</td>
+                        <td>Hyderabad</td>
+                        <td>Prod Engg</td>
+                        <td>Full-stack developer</td>
+                        <td>TZ001201</td>
+                        <td>Active</td>
+                        <td>12/03/2024</td>
+                      </tr>
+                  </table>
+                 
+            </section>        
+        </section>
+
+    </main>
+</body>
+</html>
