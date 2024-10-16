@@ -7,6 +7,7 @@ body {
     font-family: Arial, Helvetica, sans-serif;
     letter-spacing: 0.05pc;
     font-size: 14px;
+    background-color: #fcfcfc;
 }
 
 #horizontal-nav {
@@ -14,8 +15,10 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    height: 95vh;
+    height: 97vh;
     color: #616569;
+    margin-right: 40px;
+    background-color: white;
 }
 
 p {
@@ -29,10 +32,6 @@ p {
 #right-content {
     width: 85%;
     height: 95vh;
-}
-
-.space {
-    height: 20px;
 }
 
 #logo-container {
@@ -80,6 +79,11 @@ p {
     background-color: #fef6f6;
     border-radius: 8px;
     padding: 8px;
+}
+
+.rounded-img {
+   border-radius: 50%;
+   padding-right: 6px;
 }
 
 .primary-text {
@@ -179,6 +183,8 @@ input::placeholder {
     border-radius: 8px;
     padding: 8px 20px;
     text-transform: uppercase;
+    display: flex;
+    align-items: center;
 }
 
 .inactive-btn {
@@ -197,7 +203,7 @@ input::placeholder {
 #filter-category-container {
     width: 100%;
     padding: 8px;
-    border: 1px solid #f44848;
+    border: 1px solid #fbc4c4;
     background-color: #fdf2f2;
     border-radius: 6px;
     box-sizing: border-box;
@@ -207,33 +213,79 @@ input::placeholder {
 }
 
 .filter-category {
-    border : 1px solid #f44848;
+    border : 0.5px solid #fbc4c4;
     background-color: white;
     border-radius: 6px;
-    padding: 8px;
+    padding: 4px;
     margin-right:6px;
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #65728b;
 }
 
 #employees-container {
-    padding: 16px;
     box-sizing: border-box;
     width: 100%;
     border-radius: 8px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    padding: 16px;
 }
 
 table {
     width: 100%;
+    color:#2c2c2c;
 }
-  
+
+th {
+    color:#65728b;
+    text-transform: uppercase;
+    background-color: #fafafc;
+}
+
 td, th {
     border-top: 1px solid #dddddd;
     text-align: left;
-    padding: 8px;
+    padding: 8px; 
 }
 
+tr:hover {
+    background-color: #fff4f4;
+}
 
+.status-active-btn {
+    color: green;
+    background-color: #e7f4e8;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: inline;
+}
 
+.status-inactive-btn {
+    color: red;
+    background-color: #fde6e6;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 6px;
+    display: inline;
+}
+
+select {
+    border: none;
+    padding: 4px 0px;
+}
+
+select:focus{
+    outline: none;
+    border: none;
+}
+
+.bordered {
+    border : 1px solid #ff7782;
+    border-radius: 4px;
+}
+
+.option {
+    color: red;
+}

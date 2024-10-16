@@ -1,0 +1,17 @@
+#filtered-employees {
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filtered-employee-container {
+    width: 30%;
+    border: 1px solid #e9e9e9;
+    border-radius: 4px;
+    background-color: white;
+    padding: 40px 20px 20px 20px;
+    margin-bottom: 16px;
+}
+
+.flt-emp-body {
+    font-size: 12px;
+}

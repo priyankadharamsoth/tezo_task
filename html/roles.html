@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel ="stylesheet" href="/css/employees.css">
     <link rel="stylesheet" href="/css/common-classes.css">
-    <script src="/js/employees.js"></script>
-    <title>Employees</title>
+    <link rel="stylesheet" href="/css/roles.css">
+    <script src="/js/roles.js"></script>
+    <title>Roles</title>
 </head>
 <body>
     <main class="flex-content-start">
@@ -82,45 +83,13 @@
             <div class="space"></div>
             <section class="flex-space-between">
                <div>
-                    <p class = "filter-header">Employees</p>
-                    <p class= "filter-subtitle">Find all of your company's employee accounts and their associated roles.</p>
+                    <p class = "filter-header">Roles</p>
+                    <p class= "filter-subtitle">All the roles are configured here</p>
                </div>
                <div class="flex-space-between">
-                    <button class="btn inactive-btn flex-space-between"><img src="/images/Interface/Export.svg" alt="" class="pr-10">Export</button>
-                    <button class="btn active-btn flex-space-between"><img src="/images/Interface/Add.svg" alt="" class="pr-10">Add Employee</button>
+                    <button class="btn active-btn flex-space-between"><img src="/images/Interface/Add.svg" alt="" class="pr-10">Add Role</button>
                </div>
             </section>
-            <div class="space"></div>
-            <!--filter based on alphabates-->
-            <section id="filter" class="flex-space-between">
-                <img src="/images/filter.png" alt="" srcset="" class="pl-6">
-                <div class="filter-item">A</div>
-                <div class="filter-item">B</div>
-                <div class="filter-item">C</div>
-                <div class="filter-item">D</div>
-                <div class="filter-item">E</div>
-                <div class="filter-item">F</div>
-                <div class="filter-item">G</div>
-                <div class="filter-item">H</div>
-                <div class="filter-item">I</div>
-                <div class="filter-item">J</div>
-                <div class="filter-item">K</div>
-                <div class="filter-item">L</div>
-                <div class="filter-item">M</div>
-                <div class="filter-item">N</div>
-                <div class="filter-item">O</div>
-                <div class="filter-item">P</div>
-                <div class="filter-item">Q</div>
-                <div class="filter-item">R</div>
-                <div class="filter-item">S</div>
-                <div class="filter-item">T</div>
-                <div class="filter-item">U</div>
-                <div class="filter-item">V</div>
-                <div class="filter-item">W</div>
-                <div class="filter-item">X</div>
-                <div class="filter-item">Y</div>
-                <div class="filter-item">Z</div>
-            </section> 
             <div class="space"></div>
             <!--Filter-->
             <section id = "filter-category-container" class="flex-space-between">
@@ -130,10 +99,12 @@
                     <form action="">
                         <div id = "filter-categories" class="flex-space-between">
                             <div class="filter-category">
-                                <select name="status" id="status">
-                                    <option  disabled selected>Status</option>
-                                    <option value="active">Active</option>
-                                    <option value="deactive">Deactive</option>
+                                <select name="dept" id="dept">
+                                    <option  disabled selected>Department</option>
+                                    <option value="PE">Product Engg</option>
+                                    <option value="QA">QA</option>
+                                    <option value="DA">DA</option>
+                                    <option value="TA">TA</option>
                                 </select>
                             </div>
                             <div class="filter-category">
@@ -145,15 +116,7 @@
                                     <option value="ch">Chennai</option>
                                 </select>
                             </div>
-                            <div class="filter-category">
-                                <select name="dept" id="dept">
-                                    <option  disabled selected>Department</option>
-                                    <option value="PE">Product Engg</option>
-                                    <option value="QA">QA</option>
-                                    <option value="DA">DA</option>
-                                    <option value="TA">TA</option>
-                                </select>
-                            </div>
+                            
                         </div>
                     </div>
                     </form>
@@ -163,35 +126,10 @@
                 </div>
             </section> 
             <div class="space"></div>
-            <!--employees-->  
-            <section id = "employees-container">
-                <div class="flex-space-between">
-                    <div class="flex-content-start">
-                        <img src="/images/arrow-turn left -down.png" alt="" height="24px" width="24px" class="pr-6">
-                        <button class="accept-btn">Delete</button>
-                    </div>
-                    <img src="/images/table-add.png" alt="">
-                </div>
-                <div class="space"></div>
-                <table id="employee-table" cellspacing="0">
-                    <thead>
-                        <tr>
-                            <th><input type="checkbox" id="select-all" name="select-all"></th>
-                            <th><div class="flex-align-center">User<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
-                            <th><div class="flex-align-center">Location<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
-                            <th><div class="flex-align-center">Department<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
-                            <th><div class="flex-align-center">Role<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
-                            <th><div class="flex-align-center">Employee No.<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
-                            <th><div class="flex-align-center">Status<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
-                            <th><div class="flex-align-center">Join Dt.<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
-                            <th><img src="/images/more-hz.svg" alt=""></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                       
-                    </tbody>
-                </table>
-            </section>        
+            <!--Departments-->
+            <section id = "department" class="flex-space-even">
+               <!--append data on document load-->
+            </section>      
         </section>
 
     </main>

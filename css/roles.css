@@ -1,0 +1,29 @@
+#department {
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.department-container {
+    width: 30%;
+    border: 1px solid #e9e9e9;
+    border-radius: 4px;
+    background-color: white;
+    padding: 40px 20px 20px 20px;
+    margin-bottom: 16px;
+}
+
+.dept-header {
+    padding-bottom: 20px;
+    color: black;
+    font-size: 16px;
+}
+
+.dept-body {
+    color: #8e98aa;
+    padding-bottom: 10px;
+}
+
+.dept-link {
+    color: #8f8f8f;
+    font-size: 12px;
+}
