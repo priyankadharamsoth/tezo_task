@@ -1,6 +1,3 @@
-//enums
-
-
 let selectedAlphabet = '';
 
 let searchElement = '';
