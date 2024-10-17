@@ -56,10 +56,10 @@ p {
 }
 
 .active {
-    color: #f44848;
-    border-radius: 8px;
-    border: 1px solid #fde9e9;
-    background-color: #fde9e9; 
+    color: #f44848 !important;
+    border-radius: 8px !important;
+    border: 1px solid #fde9e9 !important;
+    background-color: #fde9e9 !important; 
 }
 
 .f12 {
@@ -131,6 +131,7 @@ p {
 }
 
 #search-container {
+
     width: 100%;
     background-color: white;
     border-radius: 8px;
@@ -159,7 +160,7 @@ input::placeholder {
     justify-content:end;
 }
 
-#filter div {
+#filter-by-letter button {
     border: 1px solid #eaebee;
     background-color: #eaebee;
     padding: 12px 10px;

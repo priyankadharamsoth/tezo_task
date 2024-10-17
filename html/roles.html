@@ -3,135 +3,97 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel ="stylesheet" href="/css/employees.css">
+    <link rel="stylesheet" href="/css/employees.css">
     <link rel="stylesheet" href="/css/common-classes.css">
     <link rel="stylesheet" href="/css/roles.css">
-    <script src="/js/roles.js"></script>
+    <link rel="stylesheet" href="/css/role-details.css">
+    <script src="/js/models.js"></script>
+    <script src="/js/roles.js" defer></script>
     <title>Roles</title>
 </head>
 <body>
     <main class="flex-content-start">
-        <aside id = "horizontal-nav">
-          <div>
-            <div id = "logo-container" class="flex-space-between pt-6">
-                <img src="/images/TezoLogo.png" alt="" srcset="" height="40px">
-                <img src="/images/handle.png" alt="" srcset="" height="36px" width="36px">
-            </div>
-            <div class="space-30"></div>
+        <aside id="horizontal-nav">
             <div>
-                <p class = "title">All</p>
-                <div class = "icon-text">
-                    <img src="/images/Horizontal nav/Dashboard.svg" alt="dashboard">
-                    <p>Dashboard</p>
+                <div id="logo-container" class="flex-space-between pt-6">
+                    <img src="/images/TezoLogo.png" alt="" height="40px">
+                    <img src="/images/handle.png" alt="" height="36px" width="36px">
                 </div>
-                <div class = "icon-text active">
-                    <img src="/images/Horizontal nav/Employees.svg" alt="employees">
-                    <p>Employees</p>
+                <div class="space-30"></div>
+                <div>
+                    <p class="title">All</p>
+                    <div class="icon-text">
+                        <img src="/images/Horizontal nav/Dashboard.svg" alt="dashboard">
+                        <p>Dashboard</p>
+                    </div>
+                    <div class="icon-text active">
+                        <img src="/images/Horizontal nav/Employees.svg" alt="employees">
+                        <p>Employees</p>
+                    </div>
+                </div>
+                <div class="space"></div>
+                <div>
+                    <p class="title">Role/User Management</p>
+                    <div class="flex-space-between">
+                        <div class="icon-text">
+                            <img src="/images/Horizontal nav/Roles.svg" alt="role">
+                            <p>Roles</p>
+                        </div>
+                        <img src="/images/arrow_right.svg" alt="">
+                    </div>
+                    <div class="flex-space-between">
+                        <div class="icon-text">
+                            <img src="/images/Horizontal nav/assign user.svg" alt="employees">
+                            <p>Access Rights</p>
+                        </div>
+                        <img src="/images/arrow_right.svg" alt="">
+                    </div>
                 </div>
             </div>
-            <div class="space"></div>
-            <div>
-                <p class = "title">Role/User Management</p>
-                <div class="flex-space-between">
-                    <div class = "icon-text">
-                        <img src="/images/Horizontal nav/Roles.svg" alt="role">
-                        <p>Roles</p>
-                    </div>
-                    <img src="/images/arrow_right.svg" alt="">
-                </div>
-               <div class="flex-space-between">
-                    <div class = "icon-text">
-                        <img src="/images/Horizontal nav/assign user.svg" alt="employees">
-                        <p>Access Rights</p>
-                    </div>
-                    <img src="/images/arrow_right.svg" alt="">
-               </div>
-            </div>
-          </div>
-          <div id = "update-container">
-                <p class = "primary-text">Install new update</p>
-                <p class = "secondary-text">Allow to launch the new update for the AD application</p>
-                <div class = "row-btns">
+            <div id="update-container">
+                <p class="primary-text">Install new update</p>
+                <p class="secondary-text">Allow to launch the new update for the AD application</p>
+                <div class="row-btns">
                     <button class="dismiss-btn">Dismiss</button>
                     <button class="accept-btn">Accept</button>
                 </div>
-          </div>
+            </div>
         </aside>
         <section id="right-content">
-            <div id = "search-container" class="flex-space-between">
+            <div id="search-container" class="flex-space-between">
                 <div class="flex-content-start">
                     <img src="/images/bx-search.png" alt="" class="pl-10">
-                    <input type="search" name="searchword" id="search" placeholder="Search" > 
+                    <input type="search" name="searchword" id="search" placeholder="Search">
                 </div>
-                <div id = "trailing">
+                <div id="trailing">
                     <div class="pr-20">
                         <img src="/images/Vertical Navbar/Language.svg" alt="">
-                        <img src="/images/Vertical Navbar/Categories.svg" alt="" >
-                        <img src="/images/Vertical Navbar/Mode.svg" alt="" >
-                        <img src="/images/Vertical Navbar/Notifications.svg" alt="" >
+                        <img src="/images/Vertical Navbar/Categories.svg" alt="">
+                        <img src="/images/Vertical Navbar/Mode.svg" alt="">
+                        <img src="/images/Vertical Navbar/Notifications.svg" alt="">
                     </div>
                     <div class="flex-space-between">
-                        <img src="/images/profile.png" alt="" height="40px" class = "rounded-img">
+                        <img src="/images/profile.png" alt="" height="40px" class="rounded-img">
                         <div class="flex-column-start pr-8">
                             <p class="f12">John Abraham</p>
                             <p class="f12 bold">Admin</p>
                         </div>
                         <img src="/images/arrow_down.svg" alt="" height="18px" class="pr-8">
-                   </div>
+                    </div>
                 </div>
             </div>
             <div class="space"></div>
-            <section class="flex-space-between">
-               <div>
-                    <p class = "filter-header">Roles</p>
-                    <p class= "filter-subtitle">All the roles are configured here</p>
-               </div>
-               <div class="flex-space-between">
-                    <button class="btn active-btn flex-space-between"><img src="/images/Interface/Add.svg" alt="" class="pr-10">Add Role</button>
-               </div>
+            <section id="department-container">
+                <!-- Departments -->
+                <section id="department" class="flex-space-even">
+                    <!-- Append data on document load -->
+                </section>
             </section>
-            <div class="space"></div>
-            <!--Filter-->
-            <section id = "filter-category-container" class="flex-space-between">
-                <div class="flex-space-between">
-                    <p>Filter</p>
-                    <img src="/images/filter.png" alt="">
-                    <form action="">
-                        <div id = "filter-categories" class="flex-space-between">
-                            <div class="filter-category">
-                                <select name="dept" id="dept">
-                                    <option  disabled selected>Department</option>
-                                    <option value="PE">Product Engg</option>
-                                    <option value="QA">QA</option>
-                                    <option value="DA">DA</option>
-                                    <option value="TA">TA</option>
-                                </select>
-                            </div>
-                            <div class="filter-category">
-                                <select name="location" id="location">
-                                    <option  disabled selected>Location</option>
-                                    <option value="hyd">Hyderabad</option>
-                                    <option value="mumbai">Mumbai</option>
-                                    <option value="blr">Bangalore</option>
-                                    <option value="ch">Chennai</option>
-                                </select>
-                            </div>
-                            
-                        </div>
-                    </div>
-                    </form>
-                <div>
-                    <button class="dismiss-btn bordered f12">Reset</button>
-                    <button class="accept-btn f12">Apply</button>
-                </div>
-            </section> 
-            <div class="space"></div>
-            <!--Departments-->
-            <section id = "department" class="flex-space-even">
-               <!--append data on document load-->
-            </section>      
+            <section id="details-container" class="hidden">
+                <section id="filtered-employees" class="flex-space-even">
+                </section>
+            </section>
         </section>
-
     </main>
 </body>
 </html>

@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel ="stylesheet" href="/css/employees.css">
     <link rel="stylesheet" href="/css/common-classes.css">
+    <script src="/js/models.js"></script>
     <script src="/js/employees.js"></script>
     <title>Employees</title>
 </head>
@@ -58,9 +59,9 @@
         </aside>
         <section id="right-content">
             <div id = "search-container" class="flex-space-between">
-                <div class="flex-content-start">
+                <div class="flex-content-start" style="width: 70%;">
                     <img src="/images/bx-search.png" alt="" class="pl-10">
-                    <input type="search" name="searchword" id="search" placeholder="Search" > 
+                    <input type="search" name="searchword" id="search" placeholder="Search"  style="width: 100%;"> 
                 </div>
                 <div id = "trailing">
                     <div class="pr-20">
@@ -92,34 +93,9 @@
             </section>
             <div class="space"></div>
             <!--filter based on alphabates-->
-            <section id="filter" class="flex-space-between">
+            <section id="filter-by-letter" class="flex-space-between">
                 <img src="/images/filter.png" alt="" srcset="" class="pl-6">
-                <div class="filter-item">A</div>
-                <div class="filter-item">B</div>
-                <div class="filter-item">C</div>
-                <div class="filter-item">D</div>
-                <div class="filter-item">E</div>
-                <div class="filter-item">F</div>
-                <div class="filter-item">G</div>
-                <div class="filter-item">H</div>
-                <div class="filter-item">I</div>
-                <div class="filter-item">J</div>
-                <div class="filter-item">K</div>
-                <div class="filter-item">L</div>
-                <div class="filter-item">M</div>
-                <div class="filter-item">N</div>
-                <div class="filter-item">O</div>
-                <div class="filter-item">P</div>
-                <div class="filter-item">Q</div>
-                <div class="filter-item">R</div>
-                <div class="filter-item">S</div>
-                <div class="filter-item">T</div>
-                <div class="filter-item">U</div>
-                <div class="filter-item">V</div>
-                <div class="filter-item">W</div>
-                <div class="filter-item">X</div>
-                <div class="filter-item">Y</div>
-                <div class="filter-item">Z</div>
+                
             </section> 
             <div class="space"></div>
             <!--Filter-->
@@ -130,28 +106,30 @@
                     <form action="">
                         <div id = "filter-categories" class="flex-space-between">
                             <div class="filter-category">
-                                <select name="status" id="status">
-                                    <option  disabled selected>Status</option>
-                                    <option value="active">Active</option>
-                                    <option value="deactive">Deactive</option>
+                                <select name="status" id="StatusDropDown">
+                                    <option value = "" disabled selected>Status</option>
+                                    <option value="Active">Active</option>
+                                    <option value="Inactive">Inactive</option>
                                 </select>
                             </div>
                             <div class="filter-category">
-                                <select name="location" id="location">
-                                    <option  disabled selected>Location</option>
-                                    <option value="hyd">Hyderabad</option>
-                                    <option value="mumbai">Mumbai</option>
-                                    <option value="blr">Bangalore</option>
-                                    <option value="ch">Chennai</option>
+                                <select name="location" id="LocationDropDown">
+                                    <option value = "" disabled selected>Location</option>
+                                    <option value="2">Hyderabad</option>
+                                    <option value="4">Mumbai</option>
+                                    <option value="1">Bangalore</option>
+                                    <option value="3">Chennai</option>
                                 </select>
                             </div>
                             <div class="filter-category">
-                                <select name="dept" id="dept">
-                                    <option  disabled selected>Department</option>
-                                    <option value="PE">Product Engg</option>
-                                    <option value="QA">QA</option>
-                                    <option value="DA">DA</option>
-                                    <option value="TA">TA</option>
+                                <select name="dept" id="DepartmentDropDown">
+                                    <option value = "" disabled selected>Department</option>
+                                    <option value="2">PE</option>
+                                    <option value="3">QA</option>
+                                    <option value="1">DT</option>
+                                    <option value="5">UIUX</option>
+                                    <option value="6">IT</option>
+                                    <option value="4">HR</option>
                                 </select>
                             </div>
                         </div>
@@ -159,7 +137,7 @@
                     </form>
                 <div>
                     <button class="dismiss-btn bordered f12">Reset</button>
-                    <button class="accept-btn f12">Apply</button>
+                    <button class="accept-btn f12" id = "ApplyFilter">Apply</button>
                 </div>
             </section> 
             <div class="space"></div>
