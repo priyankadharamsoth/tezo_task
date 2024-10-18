@@ -19,7 +19,7 @@ function loadData() {
                </div>
                <div class="flex-space-between">
                     <button class="btn inactive-btn flex-space-between"><img src="/images/Interface/Export.svg" alt="" class="pr-10">Export</button>
-                    <button class="btn active-btn flex-space-between"><img src="/images/Interface/Add.svg" alt="" class="pr-10">Add Employee</button>
+                    <button class="btn primary-btn  flex-space-between"><img src="/images/Interface/Add.svg" alt="" class="pr-10">Add Employee</button>
                </div>
             </section>
             <div class="space"></div>
@@ -127,7 +127,7 @@ function loadData() {
                     <th><div class="flex-align-center" onclick="sortTable(4)">Role<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
                     <th><div class="flex-align-center" onclick="sortTable(5)">Employee No.<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
                     <th><div class="flex-align-center" onclick="sortTable(6)">Status<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
-                    <th><div class="flex-align-center" onclick="sortTable(7)">Join Dt.<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
+                    <th><div class="flex-align-center" onclick="sortTable(7)>Join Dt.<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
                     <th><img src="/images/more-hz.svg" alt=""></th>
                 </tr>
             </thead>
@@ -149,11 +149,11 @@ function createAlphabetButtons() {
         button.classList.add('filter-item');
         button.textContent = String.fromCharCode(65 + index);
         button.addEventListener('click', () => {
-            const activeButtons = document.querySelectorAll('.active');
+            const activeButtons = document.querySelectorAll('.active-btn');
             activeButtons.forEach(btn => {
-                btn.classList.remove('active');
+                btn.classList.remove('active-btn');
             });
-            button.classList.add('active')
+            button.classList.add('active-btn')
             selectedAlphabet = String.fromCharCode(65 + index);
             const filteredEmployees = filterEmployees(employees);
             renderTable(filteredEmployees);
@@ -253,6 +253,21 @@ function renderTable(employeeList) {
     });
 }
 
+function hideNavBar(){
+    const navBar = document.getElementById('horizontal-nav');
+    const rightContent = document.getElementById('right-content');
+    const openNavBar = document.getElementById('open-navbar');
+
+    if(navBar.classList.contains('hidden')){
+        navBar.classList.remove('hidden');
+        openNavBar.classList.add('hidden');
+        rightContent.classList.remove('cover-all');
+    } else{
+        navBar.classList.add('hidden');
+        openNavBar.classList.remove('hidden');
+        rightContent.classList.add('cover-all');
+    }
+}
 document.addEventListener('DOMContentLoaded', () => {
     loadData();
     createAlphabetButtons();

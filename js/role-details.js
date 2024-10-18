@@ -1,11 +1,8 @@
 function getDetails(roleId) {
-    const detailsContainer = document.getElementById('details-container');
-    const deptContainer = document.getElementById('department-container');
 
+    const detailsContainer = document.getElementById('details-container');
     // Clear previous content
     detailsContainer.innerHTML = '';
-    deptContainer.classList.add('hidden');
-    detailsContainer.classList.remove('hidden');
 
     // Create and append header section
     const headerSection = document.createElement('section');
@@ -14,13 +11,13 @@ function getDetails(roleId) {
         <div>
             <div class="filter-header flex-align-center">
                 <div onclick="goBack()">Roles</div>
-                <img src="/images/arrow_right.svg" alt="" class ="pr-8 pl-8" height = "8px">
+                <img src="/images/arrow_right.svg" alt="" class ="pr-8 pl-8" height = "px">
                 <div>Employees</div>
             </div>
             <p class="filter-subtitle">All the roles are configured here</p>
         </div>
         <div class="flex-space-between">
-            <button class="btn active-btn flex-space-between">
+            <button class="btn primary-btn  flex-space-between">
                 <img src="/images/Interface/Add.svg" alt="" class="pr-10">Add Employee
             </button>
         </div>
@@ -86,3 +83,4 @@ function getDetails(roleId) {
 
     detailsContainer.appendChild(fltEmployeesSection);
 }
+

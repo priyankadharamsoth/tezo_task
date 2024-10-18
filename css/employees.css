@@ -1,5 +1,5 @@
 html, body {
-    margin: 16px;
+    margin: 0;
     padding: 0;
 }
 
@@ -10,8 +10,19 @@ body {
     background-color: #fcfcfc;
 }
 
+p {
+    margin: 2px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
 #horizontal-nav {
-    width: 18%;
+    position: fixed;
+    height: 100%;
+    padding: 24px;
+    width: 15%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -21,17 +32,29 @@ body {
     background-color: white;
 }
 
-p {
-    margin: 2px;
+
+#handle {
+    position: absolute;
+    right: -18px;
 }
 
-.bold {
-    font-weight: bold;
+.transform{
+    transform: rotate(180deg);
 }
 
 #right-content {
-    width: 85%;
-    height: 95vh;
+    position: absolute;
+    left:18%;
+    width: 78%;
+    padding: 24px;
+}
+
+.cover-all {
+    position: absolute !important;
+    left:5% !important;
+    width: 90% !important;
+    padding: 24px !important;
+    margin:auto 0  !important;
 }
 
 #logo-container {
@@ -55,7 +78,7 @@ p {
     align-items: center;
 }
 
-.active {
+.active , .active-btn{
     color: #f44848 !important;
     border-radius: 8px !important;
     border: 1px solid #fde9e9 !important;
@@ -131,7 +154,6 @@ p {
 }
 
 #search-container {
-
     width: 100%;
     background-color: white;
     border-radius: 8px;
@@ -195,7 +217,7 @@ input::placeholder {
     margin-right: 10px;
 }
 
-.active-btn {
+.primary-btn {
     color: white;
     background-color: #f44848;
     border: none;

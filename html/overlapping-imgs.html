@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mainRunner {
+        position: relative;
+        margin: auto;
+        }
+
+        .img1 {
+        border: 1px solid #f00;
+        position: relative;
+        z-index: 1;
+        border-radius: 50%;
+        height: 24px;
+        }
+
+        .img2 {
+        border: 1px solid #0f0;
+        position: relative;
+        z-index: 2;
+        top: 0px;
+        left: -20px;
+        border-radius: 50%;
+        height: 24px;
+        }
+
+        .img3 {
+        border: 1px solid #0f0;
+        position: relative;
+        z-index: 3;
+        top: 0px;
+        left: -40px;
+        border-radius: 50%;
+        height: 24px;
+        }
+
+        
+        .rounded-img {
+            border: 1px solid #0f0;
+            position: absolute;
+            z-index: 4;
+            top:0;
+            left: 30px;
+            border-radius: 50%;
+            height: 24px;
+            width: 24px;
+            text-align: center;
+            align-items: center;
+            background-color: white;
+        }
+
+
+
+    </style>
+</head>
+<body>
+    <div class="mainRunner">
+        <img class="img1" src="/images/profile.png" />
+        <img class="img2" src="/images/profile.png" />
+        <img class="img3" src="/images/profile.png" />
+        <div class="rounded-img">2+</div>
+    </div>
+</body>
+</html>

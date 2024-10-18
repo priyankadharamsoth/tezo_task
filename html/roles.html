@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/css/common-classes.css">
     <link rel="stylesheet" href="/css/roles.css">
     <link rel="stylesheet" href="/css/role-details.css">
+    <script src="/js/enums.js"></script>
     <script src="/js/models.js"></script>
     <script src="/js/routing.js"></script>
     <script src="/js/employees.js"></script>
@@ -16,11 +17,12 @@
 </head>
 <body>
     <main class="flex-content-start">
+        <div onClick="hideNavBar()" class="hidden transform p-16" id="open-navbar"><img src="/images/handle.png" alt="" height="36px" width="36px" ></div>
         <aside id="horizontal-nav">
-            <div>
+            <div class="w-95">
                 <div id="logo-container" class="flex-space-between pt-6">
                     <img src="/images/TezoLogo.png" alt="" height="40px">
-                    <img src="/images/handle.png" alt="" height="36px" width="36px">
+                    <div onClick="hideNavBar()" id="handle"><img src="/images/handle.png" alt="" height="36px" width="36px" ></div>
                 </div>
                 <div class="space-30"></div>
                 <div>
@@ -29,7 +31,7 @@
                         <img src="/images/Horizontal nav/Dashboard.svg" alt="dashboard">
                         <p>Dashboard</p>
                     </div>
-                    <div class="icon-text active">
+                    <div id = "employees-page" class="icon-text active" onclick="goToEmployees()">
                         <img src="/images/Horizontal nav/Employees.svg" alt="employees">
                         <p>Employees</p>
                     </div>
@@ -37,19 +39,19 @@
                 <div class="space"></div>
                 <div>
                     <p class="title">Role/User Management</p>
-                    <div class="flex-space-between"  onclick="goToRoles()">
+                    <div id = "roles-page" class="flex-space-between"  onclick="goToRoles()">
                         <div class="icon-text">
                             <img src="/images/Horizontal nav/Roles.svg" alt="role">
                             <p>Roles</p>
                         </div>
-                        <img src="/images/arrow_right.svg" alt="">
+                        <img src="/images/arrow_right.svg" alt="" class = 'pr-20'>
                     </div>
                     <div class="flex-space-between">
                         <div class="icon-text">
                             <img src="/images/Horizontal nav/assign user.svg" alt="employees">
                             <p>Access Rights</p>
                         </div>
-                        <img src="/images/arrow_right.svg" alt="">
+                        <img src="/images/arrow_right.svg" alt="" class = 'pr-20'>
                     </div>
                 </div>
             </div>
@@ -62,7 +64,7 @@
                 </div>
             </div>
         </aside>
-        <section id="right-content">
+        <section id="right-content" style="margin: 0 auto ;">
             <div id="search-container" class="flex-space-between">
                 <div class="flex-content-start">
                     <img src="/images/bx-search.png" alt="" class="pl-10">
@@ -86,7 +88,7 @@
                 </div>
             </div>
             <div class="space"></div>
-            
+            <!--Employees-->
             <section id = "employee-container"></section>
             <!-- Departments -->
             <section id="department-container" class = "hidden">
@@ -94,6 +96,7 @@
                     <!-- Append data on document load -->
                 </section>
             </section>
+            <!--Role Details-->
             <section id="details-container" class = "hidden">
                 <!-- Append data on document load -->
             </section>
