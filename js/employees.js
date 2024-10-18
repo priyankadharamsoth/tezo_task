@@ -30,7 +30,7 @@ function loadData() {
     const filterByAlphabetSection = document.createElement('section');
     filterByAlphabetSection.id = 'filter-by-letter';
     filterByAlphabetSection.classList.add('flex-space-between');
-    filterByAlphabetSection.innerHTML = ` <img src="/images/filter.png" alt="" srcset="" class="pl-6">`;
+    filterByAlphabetSection.innerHTML = `<div onClick="clearAlphabetFilter()"> <img src="/images/filter.png" alt="" srcset="" class="pl-6"></div>`;
 
     empContainer.appendChild(filterByAlphabetSection);
 
@@ -99,28 +99,26 @@ function loadData() {
         //add header
         const deleteEmployees = document.createElement('div');
         deleteEmployees.classList.add('flex-space-between');
+        deleteEmployees.classList.add('p-16');
         deleteEmployees.innerHTML = `
         <div class="flex-content-start">
-                            <img src="/images/arrow-turn left -down.png" alt="" height="24px" width="24px" class="pr-6">
-                            <button class="accept-btn">Delete</button>
-                        </div>
-                        <img src="/images/table-add.png" alt="">
+            <img src="/images/arrow-turn left -down.png" alt="" height="24px" width="24px" class="pr-6">
+            <button class="accept-btn">Delete</button>
+        </div>
+        <img src="/images/table-add.png" alt="" class="pr-20">
         `;
 
         employeesContainerSection.appendChild(deleteEmployees);
 
-        //add space
-        const space3 = document.createElement('div');
-        space3.classList.add('space');
-        employeesContainerSection.appendChild(space3);
 
         //table
         employeeTable  = document.createElement('table');
         employeeTable.id = 'employee-table';
+        employeeTable.cellSpacing = '0';
         employeeTable.innerHTML = `
                 <thead>
                 <tr>
-                    <th><input type="checkbox" id="select-all" name="select-all"></th>
+                    <th><input type="checkbox" class = "headerCheckBox" id="select-all" name="select-all" onclick="toggleAllCheckboxes(this)"></th>
                     <th><div class="flex-align-center" onclick="sortTable(1)">User<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
                     <th><div class="flex-align-center" onclick="sortTable(2)">Location<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
                     <th><div class="flex-align-center" onclick="sortTable(3)">Department<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
@@ -138,8 +136,6 @@ function loadData() {
 
 
     empContainer.appendChild(employeesContainerSection);
-
-    
 }
 
 function createAlphabetButtons() {
@@ -231,7 +227,7 @@ function renderTable(employeeList) {
         const empDpt = departments.find(dept => dept.id == emp.dept).department;
         const empLocation = locations.find(loc => loc.id == emp.location).location;
         row.innerHTML = `
-            <td><input type="checkbox" id="${emp.id}" name="employee" value="${emp.id}"></td>
+            <td><input type="checkbox" id="${emp.id}" class = "rowCheckBox" name="employee" value="${emp.id} "></td>
             <td> 
                 <div class="flex-align-center">
                     <img src="/images/profile.png" alt="" height="40px" class="rounded-img">
@@ -268,6 +264,33 @@ function hideNavBar(){
         rightContent.classList.add('cover-all');
     }
 }
+
+function clearAlphabetFilter(){
+    selectedAlphabet = '';
+    const activeBtn = document.querySelectorAll('.active-btn');
+    activeBtn.forEach(btn => {
+        btn.classList.remove('active-btn');  
+    });
+    const filterEmpl = filterEmployees(employees);
+    renderTable(filterEmpl);
+}
+
+function resetFilters(){
+    statusElement.value = '';
+    departmentElement.value = '';
+    locationElement.value = '';
+    const filteredEmpl = filterEmployees(employees);
+    renderTable(filteredEmpl);   
+}
+
+function toggleAllCheckboxes(source){
+    const checkboxes = document.querySelectorAll('.rowCheckBox');
+    checkboxes.forEach(checkbox => {
+        checkbox.checked = source.checked;
+    });
+}
+
+
 document.addEventListener('DOMContentLoaded', () => {
     loadData();
     createAlphabetButtons();

@@ -42,8 +42,20 @@
     padding-bottom: 8px;
 }
 
+.p-8{
+    padding: 8px;
+}
+
 .p-16{
     padding: 16px;
+}
+
+.p-24{
+    padding: 24px;
+}
+
+.mr-20 {
+    margin-right: 20px;
 }
 
 .space {
@@ -91,3 +103,6 @@
     align-items: center;
 }
 
+.center {
+    margin:  50px auto;
+}

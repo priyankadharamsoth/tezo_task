@@ -41,6 +41,10 @@ function getDetails(roleId) {
 
     // Filter employees by role
     const employeesByRole = employees.filter(emp => emp.role === roleId);
+
+    if(employeesByRole.length == 0){
+        fltEmployeesSection.innerHTML = `<p class="center">No Employees Available</p>`;
+    } else{
     employeesByRole.forEach(emp => {
         const empDept = departments.find(dept => dept.id === emp.dept)?.department || 'N/A';
         const empLoc = locations.find(loc => loc.id === emp.location)?.location || 'N/A';
@@ -80,7 +84,7 @@ function getDetails(roleId) {
         `;
         fltEmployeesSection.appendChild(empDiv);
     });
-
+    }
     detailsContainer.appendChild(fltEmployeesSection);
 }
 
