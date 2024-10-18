@@ -8,8 +8,11 @@
     <link rel="stylesheet" href="/css/roles.css">
     <link rel="stylesheet" href="/css/role-details.css">
     <script src="/js/models.js"></script>
+    <script src="/js/routing.js"></script>
+    <script src="/js/employees.js"></script>
     <script src="/js/roles.js" defer></script>
-    <title>Roles</title>
+    <script src="/js/role-details.js"></script>
+    <title>Employees</title>
 </head>
 <body>
     <main class="flex-content-start">
@@ -34,7 +37,7 @@
                 <div class="space"></div>
                 <div>
                     <p class="title">Role/User Management</p>
-                    <div class="flex-space-between">
+                    <div class="flex-space-between"  onclick="goToRoles()">
                         <div class="icon-text">
                             <img src="/images/Horizontal nav/Roles.svg" alt="role">
                             <p>Roles</p>
@@ -83,13 +86,15 @@
                 </div>
             </div>
             <div class="space"></div>
-            <section id="department-container">
-                <!-- Departments -->
+            
+            <section id = "employee-container"></section>
+            <!-- Departments -->
+            <section id="department-container" class = "hidden">
                 <section id="department" class="flex-space-even">
                     <!-- Append data on document load -->
                 </section>
             </section>
-            <section id="details-container" class="hidden">
+            <section id="details-container" class = "hidden">
                 <!-- Append data on document load -->
             </section>
         </section>
