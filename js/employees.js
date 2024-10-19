@@ -185,9 +185,9 @@ function filterEmployees(employeeList) {
         const searchMatch = !searchValue || emp.userName.toLowerCase().includes(searchValue);
         const statusMatch = !statusValue || emp.status === statusValue;
         const locationMatch = !locationValue || emp.location.toString() === locationValue;
-        console.log(emp.location, locationValue)
+        console.log(locationElement);
         const departmentMatch = !departmentValue || emp.dept.toString() === departmentValue;
-        console.log(emp.de,departmentValue);
+       console.log(departmentElement);
         const alphabetMatch = !selectedAlphabet || emp.userName.toLowerCase().startsWith(selectedAlphabet.toLowerCase());
 
         return searchMatch && statusMatch && locationMatch && departmentMatch && alphabetMatch;
@@ -273,14 +273,6 @@ function clearAlphabetFilter(){
     });
     const filterEmpl = filterEmployees(employees);
     renderTable(filterEmpl);
-}
-
-function resetFilters(){
-    statusElement.value = '';
-    departmentElement.value = '';
-    locationElement.value = '';
-    const filteredEmpl = filterEmployees(employees);
-    renderTable(filteredEmpl);   
 }
 
 function toggleAllCheckboxes(source){

@@ -32,7 +32,7 @@ const locations = [
 
 
 const employees = [
-    { id: 1, userName: "John", email: "john@gmail.com", location: 2, dept: 6, role: 2, employeeNum: "TZ200102", status: Status.INACTIVE, jointDt: "12/03/2024",},
+    { id: 1, userName: "John", email: "john@gmail.com", location: 2, dept: 6, role: 2, employeeNum: "TZ200102", status: Status.INACTIVE, jointDt: "12/03/2024", },
     { id: 2, userName: "Jane", email: "jane@gmail.com", location: 2, dept: 2, role: 3, employeeNum: "TZ200103", status: Status.ACTIVE, jointDt: "12/03/2024" ,},
     { id: 3, userName: "Mike", email: "mike@gmail.com", location: 3, dept: 3, role: 7, employeeNum: "TZ200104", status: Status.ACTIVE, jointDt: "12/03/2024" ,},
     { id: 4, userName: "Alice", email: "alice@gmail.com", location: 2, dept: 2, role:3, employeeNum: "TZ200105", status: Status.INACTIVE, jointDt: "12/03/2024", },

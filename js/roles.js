@@ -112,22 +112,22 @@ function goBack() {
 
 function setupRoleCategoryFilters() {
     searchElement = document.getElementById("search");
-    locationElement = document.getElementById("RoleLocationDropDown");
-    departmentElement = document.getElementById("RoleDepartmentDropDown");
-    applyFilterBtn = document.getElementById("RoleApplyFilter");
+    roleLocationElement = document.getElementById("RoleLocationDropDown");
+    roleDepartmentElement = document.getElementById("RoleDepartmentDropDown");
+    roleApplyFilterBtn = document.getElementById("RoleApplyFilter");
 
    const handleFilterChange = () => {
        const filteredRoles = filterRoles(roles);
        renderRoles(filteredRoles);
    };
-   applyFilterBtn.addEventListener('click', handleFilterChange);
+   roleApplyFilterBtn.addEventListener('click', handleFilterChange);
    searchElement.addEventListener('search', handleFilterChange);
 }
 
 function filterRoles(rolesList) {
    const searchValue = searchElement.value.toLowerCase();
-   const locationValue = locationElement.value;
-   const departmentValue = departmentElement.value;
+   const locationValue = roleLocationElement.value;
+   const departmentValue = roleDepartmentElement.value;
 
    return rolesList.filter(role => {
        const searchMatch = !searchValue || role.role.toLowerCase().includes(searchValue);

@@ -80,11 +80,18 @@ p {
     align-items: center;
 }
 
-.active , .active-btn{
+.active {
     color: #f44848 !important;
     border-radius: 8px !important;
     border: 1px solid #fde9e9 !important;
     background-color: #fde9e9 !important; 
+}
+
+.active-btn {
+    color: white !important;
+    border-radius: 8px !important;
+    border: 1px solid red !important;
+    background-color: red !important; 
 }
 
 .f12 {
@@ -254,12 +261,14 @@ input::placeholder {
     width: 100%;
     border-radius: 8px;
     box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+    overflow-x: auto;
 }
 
 table {
     width: 100%;
     color:#2c2c2c;
     border-collapse: collapse;
+    table-layout: auto;
 }
 
 th {
