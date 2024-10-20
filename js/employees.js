@@ -8,6 +8,18 @@ let departmentElement;
 let applyFilterBtn;
 
 
+function deleteSelectedEmployees() {
+    const checkboxes = document.querySelectorAll('.rowCheckBox:checked');
+    const idsToDelete = Array.from(checkboxes).map(checkbox => parseInt(checkbox.id));
+
+    // Filter out the employees that are not in the idsToDelete array
+    employees = employees.filter(emp => !idsToDelete.includes(emp.id));
+
+    // Re-render the table with updated employee list
+    renderTable(employees);
+    renderRoles(roles);
+}
+
 function loadData() {
     const empContainer = document.getElementById('employee-container');
     const headerSection = document.createElement('section');
@@ -103,7 +115,7 @@ function loadData() {
         deleteEmployees.innerHTML = `
         <div class="flex-content-start">
             <img src="/images/arrow-turn left -down.png" alt="" height="24px" width="24px" class="pr-6">
-            <button class="accept-btn">Delete</button>
+            <button class="accept-btn" onClick = "deleteSelectedEmployees()">Delete</button>
         </div>
         <img src="/images/table-add.png" alt="" class="pr-20">
         `;
@@ -182,13 +194,13 @@ function filterEmployees(employeeList) {
     const departmentValue = departmentElement.value;
 
     return employeeList.filter(emp => {
-        const searchMatch = !searchValue || emp.userName.toLowerCase().includes(searchValue);
+        const searchMatch = !searchValue || emp.firstName.toLowerCase().includes(searchValue) || emp.lastName.toLowerCase().includes(searchValue);
         const statusMatch = !statusValue || emp.status === statusValue;
         const locationMatch = !locationValue || emp.location.toString() === locationValue;
         console.log(locationElement);
         const departmentMatch = !departmentValue || emp.dept.toString() === departmentValue;
-       console.log(departmentElement);
-        const alphabetMatch = !selectedAlphabet || emp.userName.toLowerCase().startsWith(selectedAlphabet.toLowerCase());
+        console.log(departmentElement);
+        const alphabetMatch = !selectedAlphabet || emp.firstName.toLowerCase().startsWith(selectedAlphabet.toLowerCase());
 
         return searchMatch && statusMatch && locationMatch && departmentMatch && alphabetMatch;
     });
@@ -230,9 +242,9 @@ function renderTable(employeeList) {
             <td><input type="checkbox" id="${emp.id}" class = "rowCheckBox" name="employee" value="${emp.id} "></td>
             <td> 
                 <div class="flex-align-center">
-                    <img src="/images/profile.png" alt="" height="40px" class="rounded-img">
+                    <img src="${emp.profilePicture}" alt="" height="40px" class="rounded-img">
                     <div class="flex-column-start pr-8">
-                        <p class="bold" style="color:#2c2c2c;">${emp.userName}</p>
+                        <p class="bold" style="color:#2c2c2c;">${emp.firstName} ${emp.lastName}</p>
                         <p style="color: #909aab;">${emp.email}</p>
                     </div>
                 </div>
@@ -279,6 +291,11 @@ function toggleAllCheckboxes(source){
     const checkboxes = document.querySelectorAll('.rowCheckBox');
     checkboxes.forEach(checkbox => {
         checkbox.checked = source.checked;
+        if(checkbox.classList.contains('checked')){
+            checkbox.classList.remove('checked');
+        } else{
+            checkbox.classList.add('checked');
+        }
     });
 }
 

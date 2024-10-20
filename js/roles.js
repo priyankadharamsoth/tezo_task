@@ -51,56 +51,79 @@ function getRoles(){
                  <div class="space"></div>  
     `;
     deptContainer.prepend(div);
-   
 }
-
 
 function renderRoles(roles) {
     const dept = document.getElementById('department');
-    dept.innerHTML='';
-    if(roles.length == 0){
+    dept.innerHTML = '';
+    if (roles.length === 0) {
         dept.innerHTML = `<p class="center">No Roles Available</p>`;
-    } else{
+    } else {
         roles.forEach(role => {
-            //dept
+            // Dept
             const roleDept = departments.find(dept => dept.id == role.departmentId).department;
-            //location
+            // Location
             const roleLocation = locations.find(loc => loc.id == role.location).location;
-            //filtered empl based on role
-            const totalEmpl = employees.filter(emp => emp.role == role.id).length;
-            if(totalEmpl != 0){
+            // Filtered employees based on role
+            const filteredEmpl = employees.filter(emp => emp.role == role.id);
+
+            
                 const div = document.createElement('div');
                 div.classList.add('department-container');
+                
+                let profileImages = '';
+                let additionalText = '';
+    
+                if (filteredEmpl.length > 0) {
+                    // Create overlapping images
+                    profileImages = filteredEmpl.slice(0, 4).map(emp => 
+                        `<img src="${emp.profilePicture}" alt="${emp.firstName}" class="profile-pic">`
+                    ).join('');
+    
+                    const additionalCount = filteredEmpl.length > 4 ? filteredEmpl.length - 4 : 0;
+                    additionalText = additionalCount > 0 ? `<span class="additional-count">+${additionalCount}</span>` : '';
+                } else {
+                    profileImages = '0'; // Showing "0" when there are no employees
+                }
+    
                 div.innerHTML = `
-                       <div class="flex-space-between dept-header">
-                            <p class="bold">${role.role}</p>
-                            <img src="/images/edit.svg" alt="">
-                        </div>
-                       <div class= "dept-body">
-                            <div class="flex-space-between pb-8">
-                                <div class="flex-content-start"><img src="/images/team_svgrepo.com.svg" alt=""><p>Department</p></div>
-                                <p>${roleDept}</p>
+                    <div class="flex-space-between dept-header">
+                        <p class="bold">${role.role}</p>
+                        <img src="/images/edit.svg" alt="">
+                    </div>
+                    <div class="dept-body">
+                        <div class="flex-space-between pb-8">
+                            <div class="flex-content-start">
+                                <img src="/images/team_svgrepo.com.svg" alt="">
+                                <p>Department</p>
                             </div>
-                            <div class="flex-space-between pb-8">
-                                <div class="flex-content-start"><img src="/images/location-pin-alt-1_svgrepo.com.svg" alt=""> <p>Location</p></div>
-                                <p>${roleLocation}</p>
+                            <p>${roleDept}</p>
+                        </div>
+                        <div class="flex-space-between pb-8">
+                            <div class="flex-content-start">
+                                <img src="/images/location-pin-alt-1_svgrepo.com.svg" alt="">
+                                <p>Location</p>
                             </div>
-                            <div class="flex-space-between pb-8">
-                                <p>Total Employees</p>
-                                <p>${totalEmpl}</p>
+                            <p>${roleLocation}</p>
+                        </div>
+                        <div class="flex-space-between pb-8">
+                            <p>Total Employees</p>
+                            <div class="profile-pic-container">
+                                ${profileImages}
+                                ${additionalText}
                             </div>
                         </div>
-                        <div style="display: flex;justify-content: end;align-items: center" class = "dept-link f12" onclick = "goToRoleDetails(${role.id})">
-                            <p>View All Employees</p>
-                            <img src="/images/arrow_left.svg" alt="" class="pl-4">
-                        </div>
-                    `;
+                    </div>
+                    <div style="display: flex; justify-content: end; align-items: center" class="dept-link f12" onclick="goToRoleDetails(${role.id})">
+                        <p>View All Employees</p>
+                        <img src="/images/arrow_left.svg" alt="" class="pl-4">
+                    </div>
+                `;
                 dept.appendChild(div);
-            }
         });
     }
-   
 }
+
 
 function goBack() {
     const deptContainer = document.getElementById('department-container');

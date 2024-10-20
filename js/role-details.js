@@ -55,7 +55,7 @@ function getDetails(roleId) {
             <div class="flex-align-center pb-20">
                 <img src="/images/profile.png" alt="" height="40px" class="rounded-img">
                 <div class="flex-column-start pr-8">
-                    <p class="bold">${emp.userName}</p>
+                    <p class="bold">${emp.firstName} ${emp.lastName}</p>
                     <p style="color: #909aab">${emp.email}</p>
                 </div>
             </div>

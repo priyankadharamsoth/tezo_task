@@ -48,7 +48,17 @@ p {
     width: 79%;
     padding: 24px;
     background-color: white;
-    
+}
+
+.icon-text.active::after {
+    content: '';
+    position: absolute;
+    right: -34px; 
+    top: 0; 
+    height: 100%; 
+    width: 3px;
+    background-color: red; 
+    border-radius: 12px 0 0 12px;
 }
 
 .cover-all {
@@ -78,6 +88,7 @@ p {
     padding-left: 15px;
     padding-bottom: 4px;
     align-items: center;
+    position: relative;
 }
 
 .active {
