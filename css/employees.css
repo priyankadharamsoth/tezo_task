@@ -5,7 +5,6 @@ html, body {
 
 body {
     font-family: Arial, Helvetica, sans-serif;
-    letter-spacing: 0.05pc;
     font-size: 14px;
     background-color: #fcfcfc;
 }
@@ -47,7 +46,8 @@ p {
     left:18%;
     width: 79%;
     padding: 24px;
-    background-color: white;
+    
+    background-color: #fcfcfc;
 }
 
 .icon-text.active::after {
@@ -126,7 +126,8 @@ p {
 
 .rounded-img {
    border-radius: 50%;
-   padding-right: 6px;
+   margin-right: 6px;
+   object-fit: cover;
 }
 
 .primary-text {
@@ -154,6 +155,15 @@ p {
 .dismiss-btn {
     border: 1px solid #fde6e6;
     background-color: #fde6e6;
+    border-radius: 4px;
+    color: #f44848;
+    padding: 4px 10px;
+    margin-right: 4px ;
+}
+
+.reset-btn {
+    border: 1px solid #fde6e6;
+    background-color: white;
     border-radius: 4px;
     color: #f44848;
     padding: 4px 10px;
@@ -211,15 +221,13 @@ input::placeholder {
 }
 
 .filter-header {
-    color: #4e6173;
+    color: #5c6e7e;
     font-weight: bold;
     padding-bottom: 8px;
 }
 
 .filter-subtitle {
-    font-size: 12px;
     color: grey;
-
 }
 
 .btn {
@@ -235,6 +243,14 @@ input::placeholder {
     background-color: white;
     border: 1px solid rgb(128, 128, 128,0.5);
     margin-right: 10px;
+}
+
+.del-btn {
+    background-color: #f89191;
+    border: 1px solid #f89191;
+    border-radius: 4px;
+    color: white;
+    padding: 4px 10px;
 }
 
 .primary-btn {
@@ -259,7 +275,7 @@ input::placeholder {
     border : 0.5px solid #fbc4c4;
     background-color: white;
     border-radius: 6px;
-    padding: 4px;
+    padding: 6px;
     margin-right:6px;
     display: flex;
     justify-content: center;
@@ -295,7 +311,7 @@ td, th {
 }
 
 tr {
-    border-bottom:  1px solid #dddddd;; 
+    border-top:  1px solid #dddddd;
 }
 
 tr:hover {
@@ -337,4 +353,19 @@ select:focus{
 
 .option {
     color: red;
+}
+
+#profile {
+    position: relative;
+}
+
+.circle {
+    position: absolute;
+    left: 30px;
+    bottom: 2px;
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    background-color: #4fd189;
+    border: 2px solid white;
 }

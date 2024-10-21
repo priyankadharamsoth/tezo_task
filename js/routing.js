@@ -1,4 +1,3 @@
-// Ensure this script runs after the DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     const departmentContainer = document.getElementById('department-container'); 
     const detailContainer = document.getElementById('details-container');
@@ -33,14 +32,17 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function changeIcon() {
-        const rolesSvg = document.getElementById('roles-svg');
-        const employeesSvg = document.getElementById('employees-svg');
+        let rolesSvg = document.getElementById('roles-svg');
+        let employeesSvg = document.getElementById('employees-svg');
+        let arrowRightSvg = document.getElementById('arrow-right-svg');
 
         rolesSvg.src = '/images/Horizontal nav/Roles.svg';
         employeesSvg.src = '/images/Horizontal nav/active_employees.svg'; 
+        arrowRightSvg.src = '/images/arrow_right.svg';
 
         if (rolesPage.classList.contains('active')) {
             rolesSvg.src = '/images/Horizontal nav/active_role.svg';
+            arrowRightSvg.src = '/images/active-arrow-right.svg';
         }
         if (!employeesPage.classList.contains('active')) {
             employeesSvg.src = '/images/Horizontal nav/employees.svg'; 

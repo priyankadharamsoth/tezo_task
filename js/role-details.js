@@ -1,18 +1,28 @@
 function getDetails(roleId) {
-
     const detailsContainer = document.getElementById('details-container');
     // Clear previous content
     detailsContainer.innerHTML = '';
 
     // Create and append header section
+    const detailsHeader = detailsHeaderSection();
+    detailsContainer.prepend(detailsHeader);
+
+    // Create role description section
+    detailsContainer.append(detailsDescriptionSection());
+
+    detailsContainer.appendChild(filterEmployeesSection(roleId));
+}
+
+
+function detailsHeaderSection(){
     const headerSection = document.createElement('section');
     headerSection.className = 'flex-space-between';
     headerSection.innerHTML = `
         <div>
             <div class="filter-header flex-align-center">
-                <div onclick="goBack()">Roles</div>
-                <img src="/images/arrow_right.svg" alt="" class ="pr-8 pl-8" height = "px">
-                <div>Employees</div>
+                <div onclick="goToRoles()" class = "cursor-pointer f16">Roles</div>
+                <img src="/images/arrow_right.svg" alt="" class ="pr-8 pl-8" height = "8px">
+                <div class = "f16">Employees</div>
             </div>
             <p class="filter-subtitle">All the roles are configured here</p>
         </div>
@@ -22,18 +32,22 @@ function getDetails(roleId) {
             </button>
         </div>
     `;
-    detailsContainer.prepend(headerSection);
+    return headerSection;
+}
 
-    // Create role description section
+function detailsDescriptionSection(){
     const descriptionSection = document.createElement('div');
     descriptionSection.innerHTML = `
         <div class="space"></div>
         <p class="f16 bold pb-8">Role Description</p>
-        <p class="filter-subtitle">Configure the providers that are available to users when they sign in.</p>
+        <p class="filter-subtitle f14">Configure the providers that are available to users when they sign in.
+        Configure the providers that are available to users when they sign inConfigure the providers that are available to users when they sign in</p>
         <div class="space"></div>
     `;
-    detailsContainer.append(descriptionSection);
+    return descriptionSection;
+}
 
+function filterEmployeesSection(roleId) {
     // Create filtered employees section
     const fltEmployeesSection = document.createElement('section');
     fltEmployeesSection.id = 'filtered-employees';
@@ -53,13 +67,13 @@ function getDetails(roleId) {
         empDiv.classList.add('filtered-employee-container');
         empDiv.innerHTML = `
             <div class="flex-align-center pb-20">
-                <img src="/images/profile.png" alt="" height="40px" class="rounded-img">
+                <img src="${emp.profilePicture}" alt="" height="40px" class="rounded-img">
                 <div class="flex-column-start pr-8">
                     <p class="bold">${emp.firstName} ${emp.lastName}</p>
-                    <p style="color: #909aab">${emp.email}</p>
+                    <p class="color-grey">${emp.email}</p>
                 </div>
             </div>
-            <div class="f12 dept-body">
+            <div class="f14 dept-body">
                 <div class="flex-content-start pb-8">
                     <img src="/images/Vector (1).svg" alt="">
                     <p class="pl-10">${emp.employeeNum}</p>
@@ -77,14 +91,13 @@ function getDetails(roleId) {
                     <p class="pl-10">${empLoc}</p>
                 </div>
             </div>
-            <div class="flex-justify-end">
+            <div class="flex-justify-end color-dark-grey">
                 <p>View</p>
-                <img src="/images/arrow_left.svg" alt="" class="pl-4">
+                <img src="/images/arrow_left.svg" alt="" class="pl-4 cursor-pointer">
             </div>
         `;
         fltEmployeesSection.appendChild(empDiv);
     });
     }
-    detailsContainer.appendChild(fltEmployeesSection);
+    return fltEmployeesSection;
 }
-

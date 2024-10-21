@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="/css/employees.css">
     <link rel="stylesheet" href="/css/common-classes.css">
     <link rel="stylesheet" href="/css/roles.css">
-    <link rel="stylesheet" href="/css/role-details.css">
     <script src="/js/enums.js"></script>
     <script src="/js/models.js"></script>
     <script src="/js/routing.js"></script>
@@ -27,11 +26,11 @@
                 <div class="space-30"></div>
                 <div>
                     <p class="title">All</p>
-                    <div class="icon-text">
+                    <div class="icon-text not-allowed">
                         <img src="/images/Horizontal nav/Dashboard.svg" alt="dashboard">
                         <p>Dashboard</p>
                     </div>
-                    <div id = "employees-page" class="icon-text active" onclick="goToEmployees()">
+                    <div id = "employees-page" class="icon-text active cursor-pointer" onclick="goToEmployees()">
                         <img id = "employees-svg" src="/images/Horizontal nav/active_employees.svg" alt="employees">
                         <p>Employees</p>
                     </div>
@@ -39,14 +38,14 @@
                 <div class="space"></div>
                 <div>
                     <p class="title">Role/User Management</p>
-                    <div id = "roles-page" class="flex-space-between icon-text"  onclick="goToRoles()">
+                    <div id = "roles-page" class="flex-space-between icon-text cursor-pointer"  onclick="goToRoles()">
                         <div class="flex-space-between">
                             <img id = "roles-svg" src="/images/Horizontal nav/Roles.svg" alt="role">
                             <p>Roles</p>
                         </div>
-                        <img src="/images/arrow_right.svg" alt="" class = 'pr-20'>
+                        <img src="/images/arrow_right.svg" alt="" class = 'pr-20' id="arrow-right-svg">
                     </div>
-                    <div class="flex-space-between icon-text " >
+                    <div class="flex-space-between icon-text not-allowed" >
                         <div class="flex-space-between">
                             <img src="/images/Horizontal nav/assign user.svg" alt="employees">
                             <p>Access Rights</p>
@@ -59,8 +58,8 @@
                 <p class="primary-text">Install new update</p>
                 <p class="secondary-text">Allow to launch the new update for the AD application</p>
                 <div class="row-btns">
-                    <button class="dismiss-btn">Dismiss</button>
-                    <button class="accept-btn">Accept</button>
+                    <button class="dismiss-btn not-allowed">Dismiss</button>
+                    <button class="accept-btn not-allowed">Accept</button>
                 </div>
             </div>
         </aside>
@@ -72,17 +71,18 @@
                 </div>
                 <div id="trailing">
                     <div class="pr-20">
-                        <img src="/images/Vertical Navbar/Language.svg" alt="">
-                        <img src="/images/Vertical Navbar/Categories.svg" alt="">
-                        <img src="/images/Vertical Navbar/Mode.svg" alt="">
-                        <img src="/images/Vertical Navbar/Notifications.svg" alt="">
+                        <img src="/images/Vertical Navbar/Language.svg" alt="" class="not-allowed">
+                        <img src="/images/Vertical Navbar/Categories.svg" alt="" class="not-allowed">
+                        <img src="/images/Vertical Navbar/Mode.svg" alt="" class="not-allowed">
+                        <img src="/images/Vertical Navbar/Notifications.svg" alt="" class="not-allowed">
                     </div>
-                    <div class="flex-space-between">
+                    <div class="flex-space-between not-allowed" id = "profile">
                         <img src="/images/profile.png" alt="" height="40px" class="rounded-img">
                         <div class="flex-column-start pr-8">
                             <p class="f12">John Abraham</p>
                             <p class="f12 bold">Admin</p>
                         </div>
+                        <div class = "circle"></div>
                         <img src="/images/arrow_down.svg" alt="" height="18px" class="pr-8">
                     </div>
                 </div>

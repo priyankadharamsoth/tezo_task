@@ -1,6 +1,3 @@
-
-
-
 //models
 const roles  = [
     {id: 1, role : Roles.BUSINESS_ANALYST, departmentId : 6, location: 1},
@@ -55,7 +52,7 @@ let employees = [
         employeeNum: "TZ200103", 
         status: Status.ACTIVE, 
         jointDt: "12/03/2024", 
-        profilePicture: "/images/profile.png"
+        profilePicture: "/images/profile-2.jpg"
     },
     { 
         id: 3, 
@@ -68,7 +65,7 @@ let employees = [
         employeeNum: "TZ200104", 
         status: Status.ACTIVE, 
         jointDt: "12/03/2024", 
-        profilePicture: "/images/profile.png"
+        profilePicture: "/images/profile-3.jpg"
     },
     { 
         id: 4, 
@@ -81,7 +78,7 @@ let employees = [
         employeeNum: "TZ200105", 
         status: Status.INACTIVE, 
         jointDt: "12/03/2024", 
-        profilePicture: "/images/profile.png"
+        profilePicture: "/images/profile-4.jpg"
     },
     { 
         id: 5, 
@@ -94,7 +91,7 @@ let employees = [
         employeeNum: "TZ200106", 
         status: Status.ACTIVE, 
         jointDt: "12/03/2024", 
-        profilePicture: "/images/profile.png"
+        profilePicture: "/images/profile-5.jpg"
     },
     { 
         id: 6, 
@@ -107,7 +104,7 @@ let employees = [
         employeeNum: "TZ200107", 
         status: Status.ACTIVE, 
         jointDt: "12/03/2024", 
-        profilePicture: "/images/profile.png"
+        profilePicture: "/images/profile-6.jpg"
     },
     { 
         id: 7, 
@@ -120,7 +117,7 @@ let employees = [
         employeeNum: "TZ200108", 
         status: Status.ACTIVE, 
         jointDt: "12/03/2024", 
-        profilePicture: "/images/profile.png"
+        profilePicture: "/images/profile-7.jpg"
     },
     { 
         id: 8, 
@@ -133,7 +130,7 @@ let employees = [
         employeeNum: "TZ200109", 
         status: Status.INACTIVE, 
         jointDt: "12/03/2024", 
-        profilePicture: "/images/profile.png"
+        profilePicture: "/images/profile-2.jpg"
     },
     { 
         id: 9, 
@@ -146,7 +143,7 @@ let employees = [
         employeeNum: "TZ200110", 
         status: Status.ACTIVE, 
         jointDt: "12/03/2024", 
-        profilePicture: "/images/profile.png"
+        profilePicture: "/images/profile-3.jpg"
     },
     { 
         id: 10, 
@@ -159,6 +156,6 @@ let employees = [
         employeeNum: "TZ200111", 
         status: Status.ACTIVE, 
         jointDt: "12/03/2024", 
-        profilePicture: "/images/profile.png"
+        profilePicture: "/images/profile-4.jpg"
     },
 ];

@@ -105,4 +105,26 @@
 
 .center {
     margin:  50px auto;
+    text-align: center;
+}
+
+button {
+   cursor: pointer;
+}
+.not-allowed {cursor: not-allowed;}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.color-charcol {
+    color: #2c2c2c;;
+}
+
+.color-grey {
+    color: #555b62;
+}
+
+.color-dark-grey {
+    color: #4d4d4d;
 }
