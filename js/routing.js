@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const rolesPage = document.getElementById('roles-page');
     const employeesPage = document.getElementById('employees-page');
 
-    // Define your functions here
     window.goToRoles = function() {
         employeeContainer.classList.add('hidden');
         detailContainer.classList.add('hidden');
@@ -24,6 +23,14 @@ document.addEventListener('DOMContentLoaded', () => {
         changeIcon();
     };
 
+    window.goToRoleDetails = function(roleId) {
+        getDetails(roleId);
+        employeeContainer.classList.add('hidden');
+        detailContainer.classList.remove('hidden');
+        departmentContainer.classList.add('hidden');
+    }
+
+    
     function removeActive() {
         const getAll = document.querySelectorAll('.active');
         getAll.forEach(element => {
@@ -44,15 +51,9 @@ document.addEventListener('DOMContentLoaded', () => {
             rolesSvg.src = '/images/Horizontal nav/active_role.svg';
             arrowRightSvg.src = '/images/active-arrow-right.svg';
         }
+        
         if (!employeesPage.classList.contains('active')) {
             employeesSvg.src = '/images/Horizontal nav/employees.svg'; 
         }
-    }
-
-    window.goToRoleDetails = function(roleId) {
-        getDetails(roleId);
-        employeeContainer.classList.add('hidden');
-        detailContainer.classList.remove('hidden');
-        departmentContainer.classList.add('hidden');
     }
 });

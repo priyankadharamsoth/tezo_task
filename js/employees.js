@@ -1,6 +1,6 @@
 let selectedAlphabet = '';
 
-let searchElement = '';
+let searchElement;
 let statusElement;
 let locationElement;
 let departmentElement;
@@ -74,7 +74,7 @@ function createFilterCategorySection(){
      filterByCategorySection.classList.add('flex-space-between');
      filterByCategorySection.innerHTML = `
          <div class="flex-space-between">
-             <p>Filter</p>
+             <p class= "color-red">Filter</p>
              <img src="/images/filter-funnel.svg" alt="">
              <form action="">
                  <div id = "filter-categories" class="flex-space-between">
@@ -110,7 +110,7 @@ function createFilterCategorySection(){
          </div>
          <div>
              <button class="reset-btn bordered f12" id="dismiss-filter">Reset</button>
-             <button class="accept-btn f12" id = "apply-filter">Apply</button>
+             <button class="apply-btn f12" id = "apply-filter">Apply</button>
          </div>
      `;
      return filterByCategorySection;
@@ -152,9 +152,9 @@ function createEmployeeTable(){
                  <th><div class="flex-align-center cursor-pointer" onclick="sortTable(2)">Location<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
                  <th><div class="flex-align-center cursor-pointer" onclick="sortTable(3)">Department<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
                  <th><div class="flex-align-center cursor-pointer" onclick="sortTable(4)">Role<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
-                 <th><div class="flex-align-center cursor-pointer" onclick="sortTable(5)">Employee No.<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
+                 <th><div class="flex-align-center cursor-pointer" onclick="sortTable(5)">Employee No<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
                  <th><div class="flex-align-center cursor-pointer" onclick="sortTable(6)">Status<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
-                 <th><div class="flex-align-center cursor-pointer" onclick="sortTable(7)>Join Dt.<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
+                 <th><div class="flex-align-center cursor-pointer" onclick="sortTable(7)">Join Dt<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
                  <th><img src="/images/more-hz.svg" alt="" class = "not-allowed"></th>
              </tr>
          </thead>
@@ -191,9 +191,16 @@ function createAlphabetButtons() {
 }
 
 function renderTable(employeeList) {
-    const tableBody = document.querySelector('#employee-table tbody'); 
-    tableBody.innerHTML = ''; 
-    if(employeeList.length != 0) {
+    const tableBody = document.querySelector('#employee-table tbody');
+    const empContainer = document.getElementById('employees-container');
+    const emptyContainer = document.getElementById('empty-employee-content');
+    if(employeeList.length == 0){
+        empContainer.classList.add('hidden');
+        emptyContainer.classList.remove('hidden');
+    } else {
+        empContainer.classList.remove('hidden');
+        emptyContainer.classList.add('hidden');
+        tableBody.innerHTML = '';
         employeeList.forEach(emp => {
             const statusCls = emp.status === Status.ACTIVE ? "status-active-btn" : "status-inactive-btn";
             const row = document.createElement('tr');
@@ -207,7 +214,7 @@ function renderTable(employeeList) {
                         <img src="${emp.profilePicture}" alt="" height="40px" width="40px" class="rounded-img">
                         <div class="flex-column-start pr-8">
                             <p class=" color-charcol">${emp.firstName} ${emp.lastName}</p>
-                            <p class= "color-grey">${emp.email}</p>
+                            <p class= "color-light-grey">${emp.email}</p>
                         </div>
                     </div>
                 </td>
@@ -223,25 +230,32 @@ function renderTable(employeeList) {
             checkBox.addEventListener('change', () => {
                 const headerCheckBox = document.getElementById('select-all');
                 headerCheckBox.checked = [...document.querySelectorAll('.rowCheckBox')].every(box => box.checked);
+                if([...document.querySelectorAll('.rowCheckBox')].some(box => box.checked)) {
+                    const deleteBtn = document.getElementById('delete');
+                    deleteBtn.classList.add('active-delete');
+                }
             });
             tableBody.appendChild(row);
         });
-    } else{
-        const sec = document.getElementById('employees-container');
-        sec.classList.add('hidden');
-        const emptyContent = document.getElementById('empty-employee-content');
-        emptyContent.classList.remove('hidden');
     }
+    
 }
 
 function deleteSelectedEmployees() {
     const checkboxes = document.querySelectorAll('.rowCheckBox:checked');
+    const deleteBtn = document.getElementById('delete');
+    if(deleteBtn.classList.contains('active-delete')) {
         const idsToDelete = Array.from(checkboxes).map(checkbox => parseInt(checkbox.id));
         // Filter out the employees that are not in the idsToDelete array
         employees = employees.filter(emp => !idsToDelete.includes(emp.id));
         // Re-render the table with updated employee list
         renderTable(employees);
-        renderRoles(roles);  
+        renderRoles(roles);
+        deleteBtn.classList.remove('active-delete');
+    } else{
+        alert("Please select employees to delete");
+    }
+     
 }
 
 function setupCategoryFilters() {
@@ -257,7 +271,7 @@ function setupCategoryFilters() {
         renderTable(filteredEmp);
     };
     applyFilterBtn.addEventListener('click', handleFilterChange);
-    searchElement.addEventListener('search', handleFilterChange);
+    searchElement.addEventListener('input', handleFilterChange);
     resetBtn.addEventListener('click', () => {
         // Reset the dropdowns
         statusElement.selectedIndex = 0;
@@ -334,12 +348,15 @@ function clearAlphabetFilter(){
 
 function toggleAllCheckboxes(source){
     const checkboxes = document.querySelectorAll('.rowCheckBox');
+    const deleteBtn = document.getElementById('delete');
     checkboxes.forEach(checkbox => {
         checkbox.checked = source.checked;
         if(checkbox.classList.contains('checked')){
             checkbox.classList.remove('checked');
+            deleteBtn.classList.remove('active-delete');
         } else{
             checkbox.classList.add('checked');
+            deleteBtn.classList.add('active-delete');
         }
     });
 }

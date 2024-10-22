@@ -15,7 +15,7 @@ function getRoles(){
         <!--Filter-->
         <section id = "filter-category-container" class="flex-space-between">
             <div class="flex-space-between">
-                <p>Filter</p>
+                <p class = "color-red">Filter</p>
                 <img src="/images/filter-funnel.svg" alt="">
                 <form action="">
                     <div id = "filter-categories" class="flex-space-between">
@@ -44,7 +44,7 @@ function getRoles(){
                 </form>
             <div>
                 <button class="reset-btn bordered f12" id="role-dismiss-filter">Reset</button>
-                <button class="accept-btn f12" id="role-apply-dropdown">Apply</button>
+                <button class="apply-btn f12" id="role-apply-dropdown">Apply</button>
             </div>
         </section> 
         <div class="space"></div>  
@@ -112,7 +112,7 @@ function renderRoles(roles) {
                         </div>
                     </div>
                 </div>
-                <div class="flex-justify-end dept-link f12 cursor-pointer color-dark-grey" onclick="goToRoleDetails(${role.id})">
+                <div class="flex-justify-end dept-link f12 cursor-pointer" onclick="goToRoleDetails(${role.id})">
                     <p>View All Employees</p>
                     <img src="/images/arrow_left.svg" alt="" class="pl-4">
                 </div>
@@ -134,7 +134,7 @@ function setupRoleCategoryFilters() {
        renderRoles(filteredRoles);
    };
    roleApplydropdownBtn.addEventListener('click', handleFilterChange);
-   searchElement.addEventListener('search', handleFilterChange);
+   searchElement.addEventListener('input', handleFilterChange);
    resetBtn.addEventListener('click', () => {
     // Reset the dropdowns
     roleLocationElement.selectedIndex = 0;

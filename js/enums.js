@@ -24,7 +24,6 @@ const Roles = {
     HUMAN_RESOURCE_MANAGER: 'Human Resource Manager',
 };
 
-
 const Locations = {
     HYDERABAD: 'Hyderabad',
     BANGALORE: 'Bangalore',

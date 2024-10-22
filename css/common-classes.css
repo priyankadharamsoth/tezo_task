@@ -58,12 +58,20 @@
     margin-right: 20px;
 }
 
+.mb-8{
+    margin-bottom: 8px;
+}
+
 .space {
     height: 20px;
 }
 
 .space-30 {
     height: 30px;
+}
+
+.f12 {
+    font-size: 12px;
 }
 
 .f16{
@@ -126,5 +134,13 @@ button {
 }
 
 .color-dark-grey {
-    color: #4d4d4d;
+    color: #555b62
+}
+
+.color-light-grey {
+    color: #8f99ab;
+}
+
+.color-red {
+    color: #f55353 !important;
 }

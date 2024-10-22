@@ -91,9 +91,9 @@ function filterEmployeesSection(roleId) {
                     <p class="pl-10">${empLoc}</p>
                 </div>
             </div>
-            <div class="flex-justify-end color-dark-grey">
+            <div class="flex-justify-end dept-link cursor-pointer">
                 <p>View</p>
-                <img src="/images/arrow_left.svg" alt="" class="pl-4 cursor-pointer">
+                <img src="/images/arrow_left.svg" alt="" class="pl-4">
             </div>
         `;
         fltEmployeesSection.appendChild(empDiv);
