@@ -1,8 +1,8 @@
 function getRoles(){
-    const deptContainer = document.getElementById('department-container');
+    const deptContainer = document.getElementById('roles-container');
     const div = document.createElement('div');
     div.innerHTML = `
-        <section class="flex-space-between">
+        <section class="flex-space-between mb-20">
             <div>
                 <p class = "filter-header f16">Roles</p>
                 <p class= "filter-subtitle f14">All the roles are configured here</p>
@@ -11,9 +11,8 @@ function getRoles(){
                 <button class="btn primary-btn flex-space-between not-allowed"><img src="/images/Interface/Add.svg" alt="" class="pr-10">Add Role</button>
             </div>
         </section>
-        <div class="space"></div>
         <!--Filter-->
-        <section id = "filter-category-container" class="flex-space-between">
+        <section id = "filter-category-container" class="flex-space-between mb-20">
             <div class="flex-space-between">
                 <p class = "color-red">Filter</p>
                 <img src="/images/filter-funnel.svg" alt="">
@@ -46,8 +45,7 @@ function getRoles(){
                 <button class="reset-btn bordered f12" id="role-dismiss-filter">Reset</button>
                 <button class="apply-btn f12" id="role-apply-dropdown">Apply</button>
             </div>
-        </section> 
-        <div class="space"></div>  
+        </section>
     `;
     deptContainer.prepend(div);
 }
@@ -67,7 +65,7 @@ function renderRoles(roles) {
             const filteredEmpl = employees.filter(emp => emp.role == role.id);
 
             const div = document.createElement('div');
-            div.classList.add('department-container');
+            div.classList.add('roles-container');
             
             let profileImages = '';
             let additionalText = '';

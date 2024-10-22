@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const departmentContainer = document.getElementById('department-container'); 
+    const departmentContainer = document.getElementById('roles-container'); 
     const detailContainer = document.getElementById('details-container');
     const employeeContainer = document.getElementById('employee-container');
     const rolesPage = document.getElementById('roles-page');

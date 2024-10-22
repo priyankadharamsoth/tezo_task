@@ -15,24 +15,18 @@ function loadData() {
 
     // Filter Sections
     empContainer.appendChild(createFilterByAlphabetSection());
-    addSpace(empContainer);
 
     // Category Filter
     empContainer.appendChild(createFilterCategorySection());
-    addSpace(empContainer);
+
+    // Empty text
+    empContainer.appendChild(createEmptyDiv());
 
     // Employees Container
-    empContainer.appendChild(showEmptyDiv());
     empContainer.appendChild(createEmployeesContainerSection());
 }
 
-function addSpace(container) {
-    const space = document.createElement('div');
-    space.classList.add('space');
-    container.appendChild(space);
-}
-
-function showEmptyDiv() {
+function createEmptyDiv() {
     let div = document.createElement('div');
     div.id = "empty-employee-content";
     div.classList.add("hidden");
@@ -44,17 +38,16 @@ function showEmptyDiv() {
 function createHeaderSection(){
     const headerSection = document.createElement('section');
     headerSection.innerHTML = `
-    <section class="flex-space-between">
-               <div>
-                    <p class = "filter-header f16 pb-8">Employees</p>
-                    <p class= "filter-subtitle f14">Find all of your company's employee accounts and their associated roles.</p>
-               </div>
-               <div class="flex-space-between">
-                    <button class="btn inactive-btn flex-space-between not-allowed"><img src="/images/Interface/Export.svg" alt="" class="pr-10">Export</button>
-                    <button class="btn primary-btn  flex-space-between not-allowed"><img src="/images/Interface/Add.svg" alt="" class="pr-10">Add Employee</button>
-               </div>
-            </section>
-            <div class="space"></div>
+        <section class="flex-space-between mb-20">
+            <div>
+                <p class = "filter-header f16 pb-8">Employees</p>
+                <p class= "filter-subtitle f14">Find all of your company's employee accounts and their associated roles.</p>
+            </div>
+            <div class="flex-space-between">
+                <button class="btn inactive-btn flex-space-between not-allowed"><img src="/images/Interface/Export.svg" alt="" class="pr-10">Export</button>
+                <button class="btn primary-btn  flex-space-between not-allowed"><img src="/images/Interface/Add.svg" alt="" class="pr-10">Add Employee</button>
+            </div>
+        </section>
     `;
    return headerSection;
 }
@@ -62,7 +55,7 @@ function createHeaderSection(){
 function createFilterByAlphabetSection() {
     const section = document.createElement('section');
     section.id = 'filter-by-letter';
-    section.classList.add('flex-space-between');
+    section.classList.add('flex-space-between','mb-20');
     section.innerHTML = `<div onClick="clearAlphabetFilter()" class = "cursor-pointer"><img src="/images/filter.png" alt="" class="pl-6"></div>`;
     return section;
 }
@@ -71,7 +64,7 @@ function createFilterCategorySection(){
      //filter category container
      const filterByCategorySection = document.createElement('section');
      filterByCategorySection.id = 'filter-category-container';
-     filterByCategorySection.classList.add('flex-space-between');
+     filterByCategorySection.classList.add('flex-space-between','mb-20');
      filterByCategorySection.innerHTML = `
          <div class="flex-space-between">
              <p class= "color-red">Filter</p>
@@ -228,11 +221,13 @@ function renderTable(employeeList) {
             `;
             const checkBox = row.querySelector(`input[id="${emp.id}"]`);
             checkBox.addEventListener('change', () => {
+                const deleteBtn = document.getElementById('delete');
                 const headerCheckBox = document.getElementById('select-all');
                 headerCheckBox.checked = [...document.querySelectorAll('.rowCheckBox')].every(box => box.checked);
-                if([...document.querySelectorAll('.rowCheckBox')].some(box => box.checked)) {
-                    const deleteBtn = document.getElementById('delete');
+                if([...document.querySelectorAll('.rowCheckBox')].some(box => box.checked) || headerCheckBox.checked) {
                     deleteBtn.classList.add('active-delete');
+                } else if(![...document.querySelectorAll('.rowCheckBox')].every(box => box.checked)){
+                    deleteBtn.classList.remove('active-delete');
                 }
             });
             tableBody.appendChild(row);
@@ -245,17 +240,20 @@ function deleteSelectedEmployees() {
     const checkboxes = document.querySelectorAll('.rowCheckBox:checked');
     const deleteBtn = document.getElementById('delete');
     if(deleteBtn.classList.contains('active-delete')) {
-        const idsToDelete = Array.from(checkboxes).map(checkbox => parseInt(checkbox.id));
-        // Filter out the employees that are not in the idsToDelete array
-        employees = employees.filter(emp => !idsToDelete.includes(emp.id));
-        // Re-render the table with updated employee list
-        renderTable(employees);
-        renderRoles(roles);
-        deleteBtn.classList.remove('active-delete');
-    } else{
+        if (confirm('Are you sure you want to delete the selected employess?')) {
+            const idsToDelete = Array.from(checkboxes).map(checkbox => parseInt(checkbox.id));
+            // Filter out the employees that are not in the idsToDelete array
+            employees = employees.filter(emp => !idsToDelete.includes(emp.id));
+            // Re-render the table with updated employee list
+            let filterEmpl = filterEmployees(employees);
+            renderTable(filterEmpl);
+            renderRoles(roles);
+            deleteBtn.classList.remove('active-delete');
+        } 
+    }
+    else{
         alert("Please select employees to delete");
     }
-     
 }
 
 function setupCategoryFilters() {
@@ -283,6 +281,14 @@ function setupCategoryFilters() {
 }
 
 function filterEmployees(employeeList) {
+    //uncheck all checkboxes:
+    let headerCheckBox = document.getElementById('select-all');
+    headerCheckBox.checked = false;
+    //make delete disable
+    const deleteBtn = document.getElementById('delete');
+    deleteBtn.classList.remove('active-delete');
+
+    console.log(headerCheckBox.checked);
     const searchValue = searchElement.value.toLowerCase();
     const statusValue = statusElement.value;
     const locationValue = locationElement.value;
@@ -338,26 +344,30 @@ function hideNavBar(){
 
 function clearAlphabetFilter(){
     selectedAlphabet = '';
-    const activeBtn = document.querySelectorAll('.active-btn');
-    activeBtn.forEach(btn => {
-        btn.classList.remove('active-btn');  
-    });
+    const activeBtn = document.querySelector('.active-btn');
+    activeBtn.classList.remove('active-btn');  
     const filterEmpl = filterEmployees(employees);
     renderTable(filterEmpl);
 }
 
 function toggleAllCheckboxes(source){
     const checkboxes = document.querySelectorAll('.rowCheckBox');
+    const headerCheckBox = document.getElementById('select-all');
     const deleteBtn = document.getElementById('delete');
+    if(headerCheckBox.checked){
+        deleteBtn.classList.add('active-delete');
+    } else {
+        deleteBtn.classList.remove('active-delete');
+    }
+
     checkboxes.forEach(checkbox => {
         checkbox.checked = source.checked;
         if(checkbox.classList.contains('checked')){
             checkbox.classList.remove('checked');
-            deleteBtn.classList.remove('active-delete');
         } else{
             checkbox.classList.add('checked');
-            deleteBtn.classList.add('active-delete');
         }
+
     });
 }
 

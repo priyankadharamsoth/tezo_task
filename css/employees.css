@@ -72,7 +72,7 @@ p {
 
 #logo-container {
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 6dvi;
 }
 
 .title {
@@ -181,19 +181,6 @@ p {
     margin-right: 4px ;
 }
 
-.flex-space-between {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.flex-column-start {
-    display: flex;
-    flex-direction: column;
-    justify-content: start;
-    align-items: start;
-}
-
 #search-container {
     width: 100%;
     background-color: white;
@@ -262,6 +249,7 @@ input::placeholder {
     border-radius: 4px;
     color: white;
     padding: 4px 10px;
+    cursor: not-allowed;
 }
 
 .primary-btn {
@@ -385,4 +373,5 @@ select:focus{
 .active-delete {
     color: white !important;
     background-color: red !important; 
+    cursor: pointer !important;
 }

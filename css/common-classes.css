@@ -58,6 +58,15 @@
     margin-right: 20px;
 }
 
+.mb-20{
+    margin-bottom: 20px;
+}
+
+
+.mt-20 {
+    margin-top: 20px;
+}
+
 .mb-8{
     margin-bottom: 8px;
 }
@@ -80,6 +89,10 @@
 
 .w-95 {
     width: 95%;
+}
+
+.w-60 {
+    width: 60%;
 }
 
 .flex-content-start {
@@ -111,6 +124,19 @@
     align-items: center;
 }
 
+.flex-space-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.flex-column-start {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+}
+
 .center {
     margin:  50px auto;
     text-align: center;
@@ -119,6 +145,7 @@
 button {
    cursor: pointer;
 }
+
 .not-allowed {cursor: not-allowed;}
 
 .cursor-pointer {

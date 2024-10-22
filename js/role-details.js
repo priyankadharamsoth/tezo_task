@@ -22,7 +22,7 @@ function detailsHeaderSection(){
             <div class="filter-header flex-align-center">
                 <div onclick="goToRoles()" class = "cursor-pointer f16">Roles</div>
                 <img src="/images/arrow_right.svg" alt="" class ="pr-8 pl-8" height = "8px">
-                <div class = "f16">Employees</div>
+                <div class = "f16 not-allowed">Employees</div>
             </div>
             <p class="filter-subtitle">All the roles are configured here</p>
         </div>
@@ -38,11 +38,9 @@ function detailsHeaderSection(){
 function detailsDescriptionSection(){
     const descriptionSection = document.createElement('div');
     descriptionSection.innerHTML = `
-        <div class="space"></div>
-        <p class="f16 bold pb-8">Role Description</p>
-        <p class="filter-subtitle f14">Configure the providers that are available to users when they sign in.
+        <p class="f16 bold pb-8 mt-20">Role Description</p>
+        <p class="filter-subtitle f14 mb-20">Configure the providers that are available to users when they sign in.
         Configure the providers that are available to users when they sign inConfigure the providers that are available to users when they sign in</p>
-        <div class="space"></div>
     `;
     return descriptionSection;
 }
@@ -91,8 +89,8 @@ function filterEmployeesSection(roleId) {
                     <p class="pl-10">${empLoc}</p>
                 </div>
             </div>
-            <div class="flex-justify-end dept-link cursor-pointer">
-                <p>View</p>
+            <div class="flex-justify-end dept-link">
+                <p class=" not-allowed">View</p>
                 <img src="/images/arrow_left.svg" alt="" class="pl-4">
             </div>
         `;
