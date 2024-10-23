@@ -7,6 +7,8 @@ let departmentElement;
 
 let applyFilterBtn;
 
+let isAsc = true;
+
 function loadData() {
     const empContainer = document.getElementById('employee-container');
 
@@ -20,13 +22,13 @@ function loadData() {
     empContainer.appendChild(createFilterCategorySection());
 
     // Empty text
-    empContainer.appendChild(createEmptyDiv());
+    empContainer.appendChild(createNoDataDiv());
 
     // Employees Container
     empContainer.appendChild(createEmployeesContainerSection());
 }
 
-function createEmptyDiv() {
+function createNoDataDiv() {
     let div = document.createElement('div');
     div.id = "empty-employee-content";
     div.classList.add("hidden");
@@ -60,6 +62,18 @@ function createFilterByAlphabetSection() {
     return section;
 }
 
+function createDropdown(name, id, options) {
+    return `
+        <div class="filter-category">
+            <select name="${name}" id="${id}" title="${name}">
+                <option value="" disabled selected>${name.charAt(0).toUpperCase() + name.slice(1)}</option>
+                ${options.map(option => 
+                    `<option value="${option.id}">${option[name]}</option>`).join('')}
+            </select>
+        </div>
+    `;
+}
+
 function createFilterCategorySection(){
      //filter category container
      const filterByCategorySection = document.createElement('section');
@@ -71,33 +85,9 @@ function createFilterCategorySection(){
              <img src="/images/filter-funnel.svg" alt="">
              <form action="">
                  <div id = "filter-categories" class="flex-space-between">
-                     <div class="filter-category">
-                         <select name="status" id="status-dropdown">
-                             <option value = "" disabled selected>Status</option>
-                             <option value="Active">Active</option>
-                             <option value="Inactive">Inactive</option>
-                         </select>
-                     </div>
-                     <div class="filter-category">
-                         <select name="location" id="location-dropdown" title="location">
-                             <option value = "" disabled selected>Location</option>
-                             <option value="2">Hyderabad</option>
-                             <option value="4">Mumbai</option>
-                             <option value="1">Bangalore</option>
-                             <option value="3">Chennai</option>
-                         </select>
-                     </div>
-                     <div class="filter-category">
-                         <select name="dept" id="dept-dropdown" title="dept">
-                             <option value = "" disabled selected>Department</option>
-                             <option value="2">PE</option>
-                             <option value="3">QA</option>
-                             <option value="1">DT</option>
-                             <option value="5">UIUX</option>
-                             <option value="6">IT</option>
-                             <option value="4">HR</option>
-                         </select>
-                     </div>
+                    ${createDropdown('status', 'status-dropdown', statusOptions)}
+                    ${createDropdown('location', 'location-dropdown', locations)}
+                    ${createDropdown('department', 'dept-dropdown', departments)}
                  </div>
              </form>
          </div>
@@ -195,11 +185,12 @@ function renderTable(employeeList) {
         emptyContainer.classList.add('hidden');
         tableBody.innerHTML = '';
         employeeList.forEach(emp => {
-            const statusCls = emp.status === Status.ACTIVE ? "status-active-btn" : "status-inactive-btn";
+            const statusCls = emp.statusId == 1 ? "status-active-btn" : "status-inactive-btn";
             const row = document.createElement('tr');
-            const empRole = roles.find(role => role.id == emp.role).role;
-            const empDpt = departments.find(dept => dept.id == emp.dept).department;
-            const empLocation = locations.find(loc => loc.id == emp.location).location;
+            const empRole = roles.find(role => role.id == emp.roleId).role;
+            const empDpt = departments.find(dept => dept.id == emp.deptId).department;
+            const empLocation = locations.find(loc => loc.id == emp.locationId).location;
+            const empStatus = statusOptions.find(st => st.id == emp.statusId).status;
             row.innerHTML = `
                 <td><input type="checkbox" id="${emp.id}" class = "rowCheckBox" name="employee" value="${emp.id}"></td>
                 <td> 
@@ -215,7 +206,7 @@ function renderTable(employeeList) {
                 <td>${empDpt}</td>
                 <td>${empRole}</td>
                 <td>${emp.employeeNum}</td>
-                <td><p class="${statusCls}">${emp.status}</p></td>
+                <td><p class="${statusCls}">${empStatus}</p></td>
                 <td>${emp.jointDt}</td>
                 <td><img src="/images/more-hz.svg" alt="" class = "not-allowed"></td>
             `;
@@ -239,11 +230,15 @@ function renderTable(employeeList) {
 function deleteSelectedEmployees() {
     const checkboxes = document.querySelectorAll('.rowCheckBox:checked');
     const deleteBtn = document.getElementById('delete');
-    if(deleteBtn.classList.contains('active-delete')) {
+    if(checkboxes.length != 0) {
         if (confirm('Are you sure you want to delete the selected employess?')) {
             const idsToDelete = Array.from(checkboxes).map(checkbox => parseInt(checkbox.id));
             // Filter out the employees that are not in the idsToDelete array
-            employees = employees.filter(emp => !idsToDelete.includes(emp.id));
+            for (let i = employees.length - 1; i >= 0; i--) {
+                if (idsToDelete.includes(employees[i].id)) {
+                    employees.splice(i, 1); // Remove the employee at index i
+                }
+            }            
             // Re-render the table with updated employee list
             let filterEmpl = filterEmployees(employees);
             renderTable(filterEmpl);
@@ -288,7 +283,6 @@ function filterEmployees(employeeList) {
     const deleteBtn = document.getElementById('delete');
     deleteBtn.classList.remove('active-delete');
 
-    console.log(headerCheckBox.checked);
     const searchValue = searchElement.value.toLowerCase();
     const statusValue = statusElement.value;
     const locationValue = locationElement.value;
@@ -296,9 +290,9 @@ function filterEmployees(employeeList) {
 
     return employeeList.filter(emp => {
         const searchMatch = !searchValue || emp.firstName.toLowerCase().includes(searchValue) || emp.lastName.toLowerCase().includes(searchValue);
-        const statusMatch = !statusValue || emp.status === statusValue;
-        const locationMatch = !locationValue || emp.location.toString() === locationValue;
-        const departmentMatch = !departmentValue || emp.dept.toString() === departmentValue;
+        const statusMatch = !statusValue || emp.statusId.toString() === statusValue;
+        const locationMatch = !locationValue || emp.locationId.toString() === locationValue;
+        const departmentMatch = !departmentValue || emp.deptId.toString() === departmentValue;
         const alphabetMatch = !selectedAlphabet || emp.firstName.toLowerCase().startsWith(selectedAlphabet.toLowerCase());
         return searchMatch && statusMatch && locationMatch && departmentMatch && alphabetMatch;
     });
@@ -308,20 +302,15 @@ function sortTable(columnIndex) {
     const table = document.getElementById("employee-table");
     const tbody = table.tBodies[0];
     const rows = Array.from(tbody.rows);
-    const isAsc = tbody.dataset.sortOrder === 'asc';
-    
-    // Toggle sort order
-    tbody.dataset.sortOrder = isAsc ? 'desc' : 'asc';
 
     rows.sort((a, b) => {
         const aText = a.cells[columnIndex].textContent.trim();
         const bText = b.cells[columnIndex].textContent.trim();
-        
         return isAsc 
             ? aText > bText ? 1 : -1 
             : aText < bText ? 1 : -1;
     });
-
+    isAsc = !isAsc;
     // Reattach sorted rows to tbody
     rows.forEach(row => tbody.appendChild(row));
 }
@@ -367,7 +356,6 @@ function toggleAllCheckboxes(source){
         } else{
             checkbox.classList.add('checked');
         }
-
     });
 }
 

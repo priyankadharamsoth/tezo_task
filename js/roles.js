@@ -18,26 +18,8 @@ function getRoles(){
                 <img src="/images/filter-funnel.svg" alt="">
                 <form action="">
                     <div id = "filter-categories" class="flex-space-between">
-                        <div class="filter-category">
-                            <select name="dept" id="role-dept-dropdown">
-                            <option value = "" disabled selected>Department</option>
-                            <option value="2">PE</option>
-                            <option value="3">QA</option>
-                            <option value="1">DT</option>
-                            <option value="5">UIUX</option>
-                            <option value="6">IT</option>
-                            <option value="4">HR</option>
-                            </select>
-                        </div>
-                        <div class="filter-category">
-                            <select name="location" id="role-location-dropdown">
-                            <option value = "" disabled selected>Location</option>
-                            <option value="2">Hyderabad</option>
-                            <option value="4">Mumbai</option>
-                            <option value="1">Bangalore</option>
-                            <option value="3">Chennai</option>
-                            </select>
-                        </div>
+                        ${createDropdown('department', 'role-dept-dropdown', departments)}
+                        ${createDropdown("location","role-location-dropdown",locations)}
                     </div>
                 </div>
                 </form>
@@ -60,9 +42,9 @@ function renderRoles(roles) {
             // Dept
             const roleDept = departments.find(dept => dept.id == role.departmentId).department;
             // Location
-            const roleLocation = locations.find(loc => loc.id == role.location).location;
+            const roleLocation = locations.find(loc => loc.id == role.locationId).location;
             // Filtered employees based on role
-            const filteredEmpl = employees.filter(emp => emp.role == role.id);
+            const filteredEmpl = employees.filter(emp => emp.roleId == role.id);
 
             const div = document.createElement('div');
             div.classList.add('roles-container');
@@ -140,7 +122,6 @@ function setupRoleCategoryFilters() {
     const filtRoles = filterRoles(roles);
     renderRoles(filtRoles);
 });
-
 }
 
 function filterRoles(rolesList) {
@@ -150,7 +131,7 @@ function filterRoles(rolesList) {
 
    return rolesList.filter(role => {
        const searchMatch = !searchValue || role.role.toLowerCase().includes(searchValue);
-       const locationMatch = !locationValue || role.location.toString() === locationValue;
+       const locationMatch = !locationValue || role.locationId.toString() === locationValue;
        const departmentMatch = !departmentValue || role.departmentId.toString() === departmentValue;
        return searchMatch && locationMatch && departmentMatch;
    });

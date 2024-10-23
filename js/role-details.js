@@ -13,7 +13,6 @@ function getDetails(roleId) {
     detailsContainer.appendChild(filterEmployeesSection(roleId));
 }
 
-
 function detailsHeaderSection(){
     const headerSection = document.createElement('section');
     headerSection.className = 'flex-space-between';
@@ -52,14 +51,14 @@ function filterEmployeesSection(roleId) {
     fltEmployeesSection.className = 'flex-space-even';
 
     // Filter employees by role
-    const employeesByRole = employees.filter(emp => emp.role === roleId);
+    const employeesByRole = employees.filter(emp => emp.roleId == roleId);
 
     if(employeesByRole.length == 0){
         fltEmployeesSection.innerHTML = `<p class="center">No Employees Available</p>`;
     } else{
     employeesByRole.forEach(emp => {
-        const empDept = departments.find(dept => dept.id === emp.dept)?.department || 'N/A';
-        const empLoc = locations.find(loc => loc.id === emp.location)?.location || 'N/A';
+        const empDept = departments.find(dept => dept.id === emp.deptId)?.department || 'N/A';
+        const empLoc = locations.find(loc => loc.id === emp.locationId)?.location || 'N/A';
 
         const empDiv = document.createElement('div');
         empDiv.classList.add('filtered-employee-container');
