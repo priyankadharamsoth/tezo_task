@@ -16,6 +16,29 @@
 </head>
 <body>
     <main class="flex-content-start">
+        <div id="myModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h1>Add Employee</h1>
+                <form id = "add-employee-form">
+                    <div class="mb-8">First Name</div>
+                    <input type="text" name= "FirstName" id="emp-first-name" class="input-container">
+                    <div class="mb-8">Last Name</div>
+                    <input type="text" name= "LastName" id="emp-last-name" class="input-container">
+                    <div class="mb-8">Emp Number</div>
+                    <input type="text" name="Employee Email" id="emp-number" class="input-container">
+                    <div class="mb-8">Email</div>
+                    <input type="text" name="Employee Email" id="emp-email" class="input-container">
+                    <div id ="emp-dept" class="input-container">
+                    </div>
+                    <div id ="emp-role" class="input-container">
+                    </div>
+                    <div id ="emp-location" class="input-container">
+                    </div>
+                    <div><input type="submit" value="Submit"></div>
+                </form>
+            </div>
+        </div>
         <div onClick="hideNavBar()" class="hidden transform p-24 cursor-pointer" id="open-navbar"><img src="/images/handle.png" alt="" height="36px" width="36px" ></div>
         <aside id="horizontal-nav">
             <div>
@@ -62,6 +85,7 @@
                 </div>
             </div>
         </aside>
+        
         <section id="right-content" style="margin: 0 auto ;">
             <div id="search-container" class="flex-space-between mb-20">
                 <span>

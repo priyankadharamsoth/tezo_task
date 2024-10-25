@@ -5,6 +5,11 @@ let statusElement;
 let locationElement;
 let departmentElement;
 
+
+let empLocation ;
+let empDepartment ;
+let empRole; 
+
 let applyFilterBtn;
 
 let isAsc = true;
@@ -47,7 +52,7 @@ function createHeaderSection(){
             </div>
             <div class="flex-space-between">
                 <button class="btn inactive-btn flex-space-between not-allowed"><img src="/images/Interface/Export.svg" alt="" class="pr-10">Export</button>
-                <button class="btn primary-btn  flex-space-between not-allowed"><img src="/images/Interface/Add.svg" alt="" class="pr-10">Add Employee</button>
+                <button class="btn primary-btn  flex-space-between openModal"><img src="/images/Interface/Add.svg" alt="" class="pr-10">Add Employee</button>
             </div>
         </section>
     `;
@@ -62,9 +67,9 @@ function createFilterByAlphabetSection() {
     return section;
 }
 
-function createDropdown(name, id, options) {
+function createDropdown(name, id, options, className) {
     return `
-        <div class="filter-category">
+        <div class="${className}">
             <select name="${name}" id="${id}" title="${name}">
                 <option value="" disabled selected>${name.charAt(0).toUpperCase() + name.slice(1)}</option>
                 ${options.map(option => 
@@ -85,9 +90,9 @@ function createFilterCategorySection(){
              <img src="/images/filter-funnel.svg" alt="">
              <form action="">
                  <div id = "filter-categories" class="flex-space-between">
-                    ${createDropdown('status', 'status-dropdown', statusOptions)}
-                    ${createDropdown('location', 'location-dropdown', locations)}
-                    ${createDropdown('department', 'dept-dropdown', departments)}
+                    ${createDropdown('status', 'status-dropdown', statusOptions,"filter-category")}
+                    ${createDropdown('location', 'location-dropdown', locations,"filter-category")}
+                    ${createDropdown('department', 'dept-dropdown', departments,"filter-category")}
                  </div>
              </form>
          </div>
@@ -131,7 +136,7 @@ function createEmployeeTable(){
              <thead>
              <tr>
                  <th><input type="checkbox" class = "headerCheckBox" id="select-all" name="select-all" onclick="toggleAllCheckboxes(this)"></th>
-                 <th><div class="flex-align-center cursor-pointer" onclick="sortTable(1)">User<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
+                  <th><div class="flex-align-center cursor-pointer" onclick="sortTable(1)">User<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
                  <th><div class="flex-align-center cursor-pointer" onclick="sortTable(2)">Location<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
                  <th><div class="flex-align-center cursor-pointer" onclick="sortTable(3)">Department<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
                  <th><div class="flex-align-center cursor-pointer" onclick="sortTable(4)">Role<img src="/images/sort.svg" alt="" class="pl-10"></div></th>
@@ -304,8 +309,8 @@ function sortTable(columnIndex) {
     const rows = Array.from(tbody.rows);
 
     rows.sort((a, b) => {
-        const aText = a.cells[columnIndex].textContent.trim();
-        const bText = b.cells[columnIndex].textContent.trim();
+        const aText = a.cells[columnIndex].textContent.trim().toLowerCase();
+        const bText = b.cells[columnIndex].textContent.trim().toLowerCase();
         return isAsc 
             ? aText > bText ? 1 : -1 
             : aText < bText ? 1 : -1;
@@ -359,9 +364,136 @@ function toggleAllCheckboxes(source){
     });
 }
 
+
+function addEmployee(event) {
+    event.preventDefault();
+    empLocation = document.getElementById('empl-location-dropdown');
+    empDepartment = document.getElementById('empl-dept-dropdown');
+    empRole = document.getElementById('empl-role-dropdown');
+    let empFirstName = document.getElementById('emp-first-name').value;
+    let empLastName = document.getElementById('emp-last-name').value;
+    let empNumber = document.getElementById('emp-number').value;
+    let empEmail = document.getElementById('emp-email').value;
+    const newEmpl = {
+        id: employees.length+1,
+        firstName: empFirstName, 
+        lastName: empLastName, 
+        email: empEmail, 
+        locationId: parseInt(empLocation.value), 
+        deptId: parseInt(empDepartment.value), 
+        roleId: parseInt(empRole.value), 
+        employeeNum: empNumber, 
+        statusId: 1, 
+        jointDt:"12/02/24", 
+        profilePicture: "/images/profile.png"
+    }
+   employees.push(newEmpl);
+   const modal = document.getElementById("myModal");
+   modal.style.display = "none";
+    renderTable(employees);
+    renderRoles(roles);
+    getDetails(parseInt(empRole.value));
+    return false;
+}
+
+function modal(){
+    let addEmployeeForm = document.getElementById('add-employee-form');
+    empLocation = document.getElementById('empl-location-dropdown');
+    empDepartment = document.getElementById('empl-dept-dropdown');
+    empRole = document.getElementById('empl-role-dropdown');
+    addEmployeeForm.addEventListener('submit', (event)=> {
+        addEmployee(event);
+        addEmployeeForm.reset();
+    });
+
+    // Get modal element
+    const modal = document.getElementById("myModal");
+
+    // Get open modal button
+    const openModalButtons = document.getElementsByClassName("openModal");
+
+    // Get close button
+    const closeModalButton = document.getElementsByClassName("close")[0];
+
+    // Listen for open click
+    Array.from(openModalButtons).map(btn => btn.addEventListener("click", openModal));
+
+    // Listen for close click
+    closeModalButton.addEventListener("click", closeModal);
+
+    // Function to open the modal
+    function openModal() {
+        console.log('open model');
+        modal.style.display = "block";
+    }
+
+    // Function to close the modal
+    function closeModal() {
+        modal.style.display = "none";
+        empDepartment.selectedIndex = 0;
+        empLocation.selectedIndex = 0;
+        if(empRole != null){
+            empRole.selectedIndex = 0;
+        }
+    }
+
+    // Close the modal when clicking outside of it
+    window.onclick = function(event) {
+        if (event.target === modal) {
+            closeModal();
+        }
+    }
+}
+
+function addEmployeeContent() {
+    let employee = document.getElementById('emp-location');
+    let empDept = document.getElementById('emp-dept');
+    let empRole = document.getElementById('emp-role');
+
+    // Create dropdowns for location and department
+    let locationDiv = document.createElement('div');
+    let departmentDiv = document.createElement('div');
+    let roleDiv = document.createElement('div'); // Moved roleDiv creation here
+
+    locationDiv.innerHTML = `
+        ${createDropdown('location', 'empl-location-dropdown', locations, "filte-category")}
+    `;
+    departmentDiv.innerHTML = `
+        ${createDropdown('department', 'empl-dept-dropdown', departments, "filte-category")}
+    `;
+
+    employee.appendChild(locationDiv);
+    empDept.appendChild(departmentDiv);
+    empRole.appendChild(roleDiv); // Append roleDiv initially
+
+    const deptValue = document.getElementById('empl-dept-dropdown');
+
+    // Clear previous roles when the department changes
+    deptValue?.addEventListener('change', () => {
+        roleDiv.innerHTML = ''; // Clear previous roles
+        const selectedDeptId = deptValue.value;
+
+        // Filter roles based on the selected department
+        const filteredRoles = roles.filter(role => role.departmentId.toString() === selectedDeptId);
+
+        // Create the roles dropdown
+        if (filteredRoles.length > 0) {
+            roleDiv.innerHTML = `
+                ${createDropdown('role', 'empl-role-dropdown', filteredRoles, "filte-category")}
+            `;
+        } else {
+            roleDiv.innerHTML = '<p>No roles available for this department.</p>'; // Optional message
+        }
+    });
+}
+
+
+
 document.addEventListener('DOMContentLoaded', () => {
     loadData();
     createAlphabetButtons();
     setupCategoryFilters();
+    addEmployeeContent();
+    modal();
     renderTable(employees);
 });

@@ -137,6 +137,13 @@
     align-items: start;
 }
 
+.flex-column-center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
 .center {
     margin:  50px auto;
     text-align: center;
@@ -171,3 +178,11 @@ button {
 .color-red {
     color: #f55353 !important;
 }
+
+
+.w-60-center {
+    width: 60%;
+    margin:50px auto;
+    text-align: center;
+}
+

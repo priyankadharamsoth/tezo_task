@@ -18,8 +18,8 @@ function getRoles(){
                 <img src="/images/filter-funnel.svg" alt="">
                 <form action="">
                     <div id = "filter-categories" class="flex-space-between">
-                        ${createDropdown('department', 'role-dept-dropdown', departments)}
-                        ${createDropdown("location","role-location-dropdown",locations)}
+                        ${createDropdown('department', 'role-dept-dropdown', departments,"filter-category")}
+                        ${createDropdown("location","role-location-dropdown",locations,"filter-category")}
                     </div>
                 </div>
                 </form>

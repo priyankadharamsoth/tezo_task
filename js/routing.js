@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     window.goToRoleDetails = function(roleId) {
         getDetails(roleId);
+        modal(roleId);
         employeeContainer.classList.add('hidden');
         detailContainer.classList.remove('hidden');
         departmentContainer.classList.add('hidden');

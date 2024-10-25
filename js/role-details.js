@@ -26,7 +26,7 @@ function detailsHeaderSection(){
             <p class="filter-subtitle">All the roles are configured here</p>
         </div>
         <div class="flex-space-between">
-            <button class="btn primary-btn  flex-space-between">
+            <button class="btn primary-btn flex-space-between openModal">
                 <img src="/images/Interface/Add.svg" alt="" class="pr-10">Add Employee
             </button>
         </div>
