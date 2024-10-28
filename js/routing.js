@@ -23,9 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
         changeIcon();
     };
 
-    window.goToRoleDetails = function(roleId) {
-        getDetails(roleId);
-        modal(roleId);
+    window.goToRoleDetails = function(roleId,deptId,locationId) {
+        getDetails(roleId,deptId,locationId);
         employeeContainer.classList.add('hidden');
         detailContainer.classList.remove('hidden');
         departmentContainer.classList.add('hidden');

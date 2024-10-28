@@ -1,10 +1,10 @@
-function getDetails(roleId) {
+function getDetails(roleId,deptId,locationId) {
     const detailsContainer = document.getElementById('details-container');
     // Clear previous content
     detailsContainer.innerHTML = '';
 
     // Create and append header section
-    const detailsHeader = detailsHeaderSection();
+    const detailsHeader = detailsHeaderSection(roleId,deptId,locationId);
     detailsContainer.prepend(detailsHeader);
 
     // Create role description section
@@ -13,7 +13,7 @@ function getDetails(roleId) {
     detailsContainer.appendChild(filterEmployeesSection(roleId));
 }
 
-function detailsHeaderSection(){
+function detailsHeaderSection(roleId,deptId,locationId){
     const headerSection = document.createElement('section');
     headerSection.className = 'flex-space-between';
     headerSection.innerHTML = `
@@ -26,7 +26,7 @@ function detailsHeaderSection(){
             <p class="filter-subtitle">All the roles are configured here</p>
         </div>
         <div class="flex-space-between">
-            <button class="btn primary-btn flex-space-between openModal">
+            <button class="btn primary-btn flex-space-between" onClick="openModal(${roleId},${deptId},${locationId})">
                 <img src="/images/Interface/Add.svg" alt="" class="pr-10">Add Employee
             </button>
         </div>

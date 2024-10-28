@@ -92,7 +92,7 @@ function renderRoles(roles) {
                         </div>
                     </div>
                 </div>
-                <div class="flex-justify-end dept-link f12 cursor-pointer" onclick="goToRoleDetails(${role.id})">
+                <div class="flex-justify-end dept-link f12 cursor-pointer" onclick="goToRoleDetails(${role.id},${role.departmentId},${role.locationId})">
                     <p>View All Employees</p>
                     <img src="/images/arrow_left.svg" alt="" class="pl-4">
                 </div>

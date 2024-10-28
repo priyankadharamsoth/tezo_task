@@ -12,6 +12,8 @@ let empRole;
 
 let applyFilterBtn;
 
+let roleDiv = document.createElement('div');
+
 let isAsc = true;
 
 function loadData() {
@@ -70,7 +72,7 @@ function createFilterByAlphabetSection() {
 function createDropdown(name, id, options, className) {
     return `
         <div class="${className}">
-            <select name="${name}" id="${id}" title="${name}">
+            <select name="${name}" id="${id}" title="${name}" required>
                 <option value="" disabled selected>${name.charAt(0).toUpperCase() + name.slice(1)}</option>
                 ${options.map(option => 
                     `<option value="${option.id}">${option[name]}</option>`).join('')}
@@ -396,40 +398,39 @@ function addEmployee(event) {
     return false;
 }
 
+function setSelectedValue(dropdownId, valueToSelect) {
+    const dropdown = document.getElementById(dropdownId);
+   if(dropdown != null){
+    dropdown.value = valueToSelect; 
+    dropdown.disabled = true;
+   }
+}
+
 function modal(){
-    let addEmployeeForm = document.getElementById('add-employee-form');
     empLocation = document.getElementById('empl-location-dropdown');
     empDepartment = document.getElementById('empl-dept-dropdown');
     empRole = document.getElementById('empl-role-dropdown');
-    addEmployeeForm.addEventListener('submit', (event)=> {
-        addEmployee(event);
-        addEmployeeForm.reset();
-    });
-
-    // Get modal element
+    const addEmployeeForm = document.getElementById('add-employee-form');
+    if (!addEmployeeForm.hasListener) {
+        addEmployeeForm.addEventListener('submit', (event) => {
+            addEmployee(event);
+            addEmployeeForm.reset(); 
+        });
+        addEmployeeForm.hasListener = true;
+    }
     const modal = document.getElementById("myModal");
 
-    // Get open modal button
     const openModalButtons = document.getElementsByClassName("openModal");
 
-    // Get close button
     const closeModalButton = document.getElementsByClassName("close")[0];
 
-    // Listen for open click
     Array.from(openModalButtons).map(btn => btn.addEventListener("click", openModal));
 
-    // Listen for close click
     closeModalButton.addEventListener("click", closeModal);
 
-    // Function to open the modal
-    function openModal() {
-        console.log('open model');
-        modal.style.display = "block";
-    }
-
-    // Function to close the modal
     function closeModal() {
         modal.style.display = "none";
+        addEmployeeForm.reset(); 
         empDepartment.selectedIndex = 0;
         empLocation.selectedIndex = 0;
         if(empRole != null){
@@ -445,15 +446,25 @@ function modal(){
     }
 }
 
+ // Function to open the modal
+ function openModal(roleId,deptId,locationId) {
+    const modal = document.getElementById("myModal");
+    modal.style.display = "block";
+    if(deptId != null && roleId != null && locationId != null){
+        setSelectedValue('empl-dept-dropdown',deptId);
+        handleRoleContent(deptId.toString(), roleDiv); 
+        setSelectedValue('empl-role-dropdown',roleId);
+        setSelectedValue('empl-location-dropdown',locationId);
+    }
+}
+
 function addEmployeeContent() {
     let employee = document.getElementById('emp-location');
     let empDept = document.getElementById('emp-dept');
     let empRole = document.getElementById('emp-role');
 
-    // Create dropdowns for location and department
     let locationDiv = document.createElement('div');
-    let departmentDiv = document.createElement('div');
-    let roleDiv = document.createElement('div'); // Moved roleDiv creation here
+    let departmentDiv = document.createElement('div'); 
 
     locationDiv.innerHTML = `
         ${createDropdown('location', 'empl-location-dropdown', locations, "filte-category")}
@@ -464,30 +475,30 @@ function addEmployeeContent() {
 
     employee.appendChild(locationDiv);
     empDept.appendChild(departmentDiv);
-    empRole.appendChild(roleDiv); // Append roleDiv initially
+    empRole.appendChild(roleDiv); 
 
     const deptValue = document.getElementById('empl-dept-dropdown');
 
-    // Clear previous roles when the department changes
     deptValue?.addEventListener('change', () => {
-        roleDiv.innerHTML = ''; // Clear previous roles
-        const selectedDeptId = deptValue.value;
-
-        // Filter roles based on the selected department
-        const filteredRoles = roles.filter(role => role.departmentId.toString() === selectedDeptId);
-
-        // Create the roles dropdown
-        if (filteredRoles.length > 0) {
-            roleDiv.innerHTML = `
-                ${createDropdown('role', 'empl-role-dropdown', filteredRoles, "filte-category")}
-            `;
-        } else {
-            roleDiv.innerHTML = '<p>No roles available for this department.</p>'; // Optional message
-        }
+        handleRoleContent(deptValue.value, roleDiv); 
     });
+
+    if (deptValue.value) {
+        handleRoleContent(deptValue.value, roleDiv);
+    }
 }
 
-
+function handleRoleContent(selectedDeptId, roleDiv) {
+    roleDiv.innerHTML = ''; 
+    const filteredRoles = roles.filter(role => role.departmentId.toString() === selectedDeptId);
+    if (filteredRoles.length > 0) {
+        roleDiv.innerHTML = `
+            ${createDropdown('role', 'empl-role-dropdown', filteredRoles, "filte-category")}
+        `;
+    } else {
+        roleDiv.innerHTML = '<p>No roles available for this department.</p>'; // Optional message
+    }
+}
 
 document.addEventListener('DOMContentLoaded', () => {
     loadData();
