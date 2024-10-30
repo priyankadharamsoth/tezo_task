@@ -366,12 +366,12 @@ function toggleAllCheckboxes(source){
     });
 }
 
-
 function addEmployee(event) {
     event.preventDefault();
     empLocation = document.getElementById('empl-location-dropdown');
     empDepartment = document.getElementById('empl-dept-dropdown');
     empRole = document.getElementById('empl-role-dropdown');
+    let empJoinDate = document.getElementById('emp-join-date');
     let empFirstName = document.getElementById('emp-first-name').value;
     let empLastName = document.getElementById('emp-last-name').value;
     let empNumber = document.getElementById('emp-number').value;
@@ -386,7 +386,7 @@ function addEmployee(event) {
         roleId: parseInt(empRole.value), 
         employeeNum: empNumber, 
         statusId: 1, 
-        jointDt:"12/02/24", 
+        jointDt:empJoinDate.value, 
         profilePicture: "/images/profile.png"
     }
    employees.push(newEmpl);
@@ -399,10 +399,10 @@ function addEmployee(event) {
 }
 
 function setSelectedValue(dropdownId, valueToSelect) {
-    const dropdown = document.getElementById(dropdownId);
-   if(dropdown != null){
+   const dropdown = document.getElementById(dropdownId);
+   if(dropdown != null && dropdown.value != null){
     dropdown.value = valueToSelect; 
-    dropdown.disabled = true;
+        dropdown.disabled = true;
    }
 }
 
@@ -446,25 +446,33 @@ function modal(){
     }
 }
 
- // Function to open the modal
  function openModal(roleId,deptId,locationId) {
     const modal = document.getElementById("myModal");
     modal.style.display = "block";
+    //for adding employees based on role
     if(deptId != null && roleId != null && locationId != null){
         setSelectedValue('empl-dept-dropdown',deptId);
         handleRoleContent(deptId.toString(), roleDiv); 
         setSelectedValue('empl-role-dropdown',roleId);
         setSelectedValue('empl-location-dropdown',locationId);
     }
+    //for adding employees in emp page
+    //make it enable everytime
+     else{
+        document.getElementById('empl-dept-dropdown').disabled= false;
+        document.getElementById('empl-role-dropdown').disabled= false;
+        document.getElementById('empl-location-dropdown').disabled= false;
+    }
 }
 
 function addEmployeeContent() {
-    let employee = document.getElementById('emp-location');
-    let empDept = document.getElementById('emp-dept');
-    let empRole = document.getElementById('emp-role');
+    let employeeDropDowns = document.getElementById('emp-drop-downs');
 
     let locationDiv = document.createElement('div');
     let departmentDiv = document.createElement('div'); 
+     
+    locationDiv.classList.add('input-container');
+    departmentDiv.classList.add('input-container');
 
     locationDiv.innerHTML = `
         ${createDropdown('location', 'empl-location-dropdown', locations, "filte-category")}
@@ -473,9 +481,9 @@ function addEmployeeContent() {
         ${createDropdown('department', 'empl-dept-dropdown', departments, "filte-category")}
     `;
 
-    employee.appendChild(locationDiv);
-    empDept.appendChild(departmentDiv);
-    empRole.appendChild(roleDiv); 
+    employeeDropDowns.appendChild(departmentDiv);
+    employeeDropDowns.appendChild(roleDiv);
+    employeeDropDowns.appendChild(locationDiv); 
 
     const deptValue = document.getElementById('empl-dept-dropdown');
 
@@ -489,6 +497,7 @@ function addEmployeeContent() {
 }
 
 function handleRoleContent(selectedDeptId, roleDiv) {
+    roleDiv.classList.add('input-container');
     roleDiv.innerHTML = ''; 
     const filteredRoles = roles.filter(role => role.departmentId.toString() === selectedDeptId);
     if (filteredRoles.length > 0) {

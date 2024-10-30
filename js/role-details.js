@@ -8,7 +8,7 @@ function getDetails(roleId,deptId,locationId) {
     detailsContainer.prepend(detailsHeader);
 
     // Create role description section
-    detailsContainer.append(detailsDescriptionSection());
+    detailsContainer.appendChild(detailsDescriptionSection());
 
     detailsContainer.appendChild(filterEmployeesSection(roleId));
 }
@@ -89,12 +89,14 @@ function filterEmployeesSection(roleId) {
                 </div>
             </div>
             <div class="flex-justify-end dept-link">
-                <p class=" not-allowed">View</p>
+                <p class="not-allowed">View</p>
                 <img src="/images/arrow_left.svg" alt="" class="pl-4">
             </div>
         `;
         fltEmployeesSection.appendChild(empDiv);
+
     });
     }
     return fltEmployeesSection;
 }
+
